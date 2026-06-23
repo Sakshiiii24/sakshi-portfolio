@@ -1,7 +1,7 @@
 export const aboutContent = {
   name: "Sakshi Srivastava",
   role: "Associate Software Engineer",
-  location: "Greater Noida, India",
+  location: "Gurugram, India",
   availability: "Open to software engineering opportunities",
   intro: [
     "I'm Sakshi Srivastava — a software engineer who cares about building reliable, well-structured software that genuinely solves problems.",
@@ -82,7 +82,7 @@ export const aboutContent = {
     "I write cleaner commit messages than code, sometimes",
   ],
   socials: [
-    { name: "GitHub", url: "https://github.com/sakshisrivastava", handle: "sakshisrivastava" },
+    { name: "GitHub", url: "https://github.com/Sakshiiii24", handle: "sakshisrivastava" },
     { name: "LinkedIn", url: "https://linkedin.com/in/sakshisrivastava", handle: "in/sakshisrivastava" },
     { name: "LeetCode", url: "https://leetcode.com/sakshisrivastava", handle: "sakshisrivastava" },
   ],
@@ -90,7 +90,7 @@ export const aboutContent = {
 
 export const contactInfo = {
   email: "sakshisrivastava55271@gmail.com",
-  location: "Greater Noida, India (UTC+5:30)",
+  location: "Gurugram, India (UTC+5:30)",
   availability: "Open to software engineering opportunities",
   responseTime: "Usually replies within 24 hours",
 };

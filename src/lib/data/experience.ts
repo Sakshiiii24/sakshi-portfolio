@@ -54,7 +54,7 @@ export const experiences: ExperienceItem[] = [
     company: "Kaspro Solutions",
     role: "Web Developer Intern",
     period: "Jan 2025 — Jun 2025",
-    location: "Greater Noida, India",
+    location: "Gurugram, India",
     current: false,
     summary:
       "Contributed to a live enterprise Java project — frontend enhancements, SQL queries, JDBC adapters, and Agile delivery including code reviews and testing.",
@@ -74,7 +74,7 @@ export const education: EducationItem[] = [
     institution: "Galgotias University",
     degree: "B.Tech in Computer Science & Engineering",
     period: "2021 — 2025",
-    location: "Greater Noida, India",
+    location: "Gurugram, India",
     details:
       "Completed my B.Tech in CSE with a CGPA of 8.55, building strong foundations in OOP, DSA, operating systems, DBMS, and the software development lifecycle.",
     highlights: [

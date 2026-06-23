@@ -97,12 +97,15 @@ export default function ResumePage() {
           className="no-print mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3"
         >
           <div className="flex flex-wrap items-center gap-3">
-            <MagneticButton onClick={handlePrint} variant="primary">
+            <MagneticButton
+              href="/Downloads/Sakshi_Srivastava_Resume.pdf"
+              variant="primary"
+            >
               <Download className="size-4" />
               Download PDF
             </MagneticButton>
 
-            <MagneticButton onClick={handlePrint} variant="outline">
+            <MagneticButton href="/Downloads/Sakshi_Srivastava_Resume.pdf" variant="outline">
               <Printer className="size-4" />
               Print
             </MagneticButton>

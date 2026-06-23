@@ -11,11 +11,11 @@ export const siteConfig = {
   name: "Sakshi Srivastava",
   role: "Associate Software Engineer",
   email: "sakshisrivastava55271@gmail.com",
-  location: "Greater Noida, India",
+  location: "Gurugram, India",
   availability: "Open to software engineering opportunities",
   socials: {
-    github: "https://github.com/sakshisrivastava",
-    linkedin: "https://linkedin.com/in/sakshisrivastava",
+    github: "https://github.com/Sakshiiii24",
+    linkedin: "https://www.linkedin.com/in/sakshi-srivastava-7b08a3371/",
     leetcode: "https://leetcode.com/sakshisrivastava",
   },
 };
