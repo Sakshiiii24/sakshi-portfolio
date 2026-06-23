@@ -254,3 +254,32 @@ Stage Summary:
 - Portfolio is production-ready and fully interactive. All 6 routes + project detail pages + contact API work end-to-end.
 - Premium design system: warm amber/rose/emerald palette, Instrument Serif display font, aurora+grid+noise background, custom cursor, scroll progress, back-to-top, command palette, page transitions, magnetic buttons, staggered reveals.
 - Lint clean. Browser-verified interactivity confirmed.
+
+---
+Task ID: RESUME-OVERHAUL
+Agent: orchestrator
+Task: Overhaul portfolio to match Sakshi Srivastava's real resume
+
+Work Log:
+- Rewrote src/lib/data/site.ts: name "Sakshi Srivastava", email sakshisrivastava55271@gmail.com, location Greater Noida, role "Associate Software Engineer", socials {github, linkedin, leetcode} (dropped twitter/readcv)
+- Rewrote src/lib/data/about.ts: real intro (Java/JS/Python/SQL), journey (2021 Galgotias → 2025 Amdocs), philosophy (fundamentals/clean code/small slices/curiosity), values, hobbies, fun facts, contactInfo
+- Rewrote src/lib/data/skills.ts: 6 groups matching resume exactly — Programming Languages (Java/Python/JS/SQL), Frontend (HTML5/CSS3/JS/React/Responsive), Backend (Node.js/REST/JDBC/Java), Databases (Oracle/PostgreSQL/MongoDB/MySQL), Tools (Git/GitHub/Git Bash/Jira/AWS), Coursework (OOP/DSA/OS/DBMS/SDLC) + marquee
+- Rewrote src/lib/data/projects.ts: 6 projects — 2 real (AI Incident Management [Python/SQL/REST/OOP], Healthcare Management System [Java/HTML/CSS/JS/MySQL]) + 4 added matching profile (DSA Visualizer [React/JS], TaskFlow REST API [Node/Express/JWT/PostgreSQL], Library Management System [Java/JDBC/MySQL], Weather Dashboard [React/JS/REST]). 3 featured. New categories: added "Backend" and "Full-Stack"
+- Rewrote src/lib/data/experience.ts: Amdocs (Associate SE, Jul 2025-Present, current) with 5 real bullet points, Kaspro Solutions (Web Developer Intern, Jan-Jun 2025) with 5 real bullet points, education Galgotias University (B.Tech CSE, CGPA 8.55, 2021-2025), certifications (Java-Udemy, GenAI-Amdocs), achievements (500+ DSA, GenAI cert, Java cert, CGPA 8.55, intern-to-fulltime, 6+ projects)
+- Updated src/app/layout.tsx metadata: title "Sakshi Srivastava — Associate Software Engineer", real description, keywords
+- Updated src/app/page.tsx: hero "I build software that just works.", real description (Amdocs/Java/JS/Python/SQL), monogram stats "1+ year experience / 500+ DSA problems", social link X→LeetCode, featured-projects description, experience heading "Building, learning, and shipping along the way.", contact CTA "open to software engineering opportunities"
+- Updated src/app/about/page.tsx: Est. 2021, journey heading "From first commit to first full-time role.", Galgotias reference, snapshot values (500+ DSA, 6+ projects), 2021→Now side label, closing CTA "software engineering role, an internship"
+- Updated src/app/experience/page.tsx: metaStats (1+ yr, 2 companies, 6+ projects, 500+ DSA, 8.55 CGPA), accomplishmentStats, header "A year into my professional journey", 2025→Now, "Two roles" description, education/cert/achievement descriptions updated
+- Updated src/app/resume/page.tsx: summary now matches resume verbatim, github/linkedin handles → sakshisrivastava
+- Updated src/app/contact/page.tsx: socialLinks (github/linkedin/leetcode, dropped X/Read.cv), "software engineering role, intern or junior developer", Greater Noida, social grid 1col→3col
+- Updated src/app/projects/page.tsx: hero "built" (was "shipped"), description "web apps, backend APIs, full-stack projects... healthcare portal to AI incident management system"
+- Updated src/app/projects/[slug]/page.tsx: metadata title "· Sakshi Srivastava"
+- Updated src/app/projects/[slug]/project-detail.tsx: softened metrics + tech stack descriptions for student projects
+- Updated all 5 layout.tsx metadata files (about/experience/contact/resume/projects) with real descriptions
+- Updated src/components/site/site-footer.tsx: socials X→LeetCode (Code2 icon)
+- Updated src/components/site/command-palette.tsx: social X→LeetCode (Code2 icon)
+
+Stage Summary:
+- Portfolio now authentically reflects Sakshi Srivastava's real resume: Java/JS/Python/SQL stack, Amdocs + Kaspro experience, Galgotias University (CGPA 8.55), 2 real projects + 4 matching added (6 total), Java/GenAI certs, 500+ DSA achievement
+- All social links now GitHub/LinkedIn/LeetCode (no fake Twitter/Read.cv)
+- Lint clean. All routes 200. Browser-verified: home, about, projects (+5 detail pages), experience, contact, resume all render correct real content with no errors.

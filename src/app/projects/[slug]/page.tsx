@@ -29,13 +29,13 @@ export async function generateMetadata({
     title: project.title,
     description,
     openGraph: {
-      title: `${project.title} · Sakshi`,
+      title: `${project.title} · Sakshi Srivastava`,
       description,
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} · Sakshi`,
+      title: `${project.title} · Sakshi Srivastava`,
       description,
     },
   };

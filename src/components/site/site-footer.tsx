@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Code2, Mail, ArrowUpRight } from "lucide-react";
 import { navLinks, siteConfig } from "@/lib/data/site";
 
 export function SiteFooter() {
@@ -9,7 +9,7 @@ export function SiteFooter() {
   const socials = [
     { name: "GitHub", href: siteConfig.socials.github, icon: Github },
     { name: "LinkedIn", href: siteConfig.socials.linkedin, icon: Linkedin },
-    { name: "X", href: siteConfig.socials.twitter, icon: Twitter },
+    { name: "LeetCode", href: siteConfig.socials.leetcode, icon: Code2 },
     { name: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
   ];
 

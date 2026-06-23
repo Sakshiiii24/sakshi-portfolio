@@ -47,9 +47,9 @@ export default function ResumePage() {
     );
   }, []);
 
-  // Concise professional summary derived from the about intro.
+  // Concise professional summary derived from the resume.
   const summary =
-    "Software engineer with 6+ years building products used by hundreds of thousands of people — from real-time analytics engines scaling to billions of events/day to design systems adopted across entire product orgs. Lives at the intersection of design, performance, and human-centric product thinking; ships the details most people never notice.";
+    "Software Engineer with experience in Java, JavaScript, web application development, RESTful APIs, and SQL. Skilled in building responsive user interfaces, backend services, and scalable software solutions in Agile environments. Solved 500+ DSA problems across LeetCode and GeeksforGeeks, and GenAI certified by Amdocs.";
 
   return (
     <>
@@ -159,7 +159,7 @@ export default function ResumePage() {
                         className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
                       >
                         <Github className="size-3.5" />
-                        github.com/sakshi
+                        github.com/sakshisrivastava
                       </a>
                       <a
                         href={siteConfig.socials.linkedin}
@@ -168,7 +168,7 @@ export default function ResumePage() {
                         className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
                       >
                         <Linkedin className="size-3.5" />
-                        in/sakshi
+                        in/sakshisrivastava
                       </a>
                     </div>
                   </div>

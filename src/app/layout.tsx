@@ -26,30 +26,34 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const siteUrl = "https://sakshi.dev";
-const siteName = "Sakshi — Software Engineer";
+const siteUrl = "https://sakshisrivastava.dev";
+const siteName = "Sakshi Srivastava — Associate Software Engineer";
 const siteDescription =
-  "Sakshi is a software engineer crafting elegant, performant web experiences. Explore featured projects, experience, and get in touch.";
+  "Sakshi Srivastava is an Associate Software Engineer skilled in Java, JavaScript, Python, and SQL — building responsive web interfaces, RESTful APIs, and reliable backend services. Explore projects, experience, and get in touch.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteName,
-    template: "%s · Sakshi",
+    template: "%s · Sakshi Srivastava",
   },
   description: siteDescription,
   keywords: [
-    "Sakshi",
+    "Sakshi Srivastava",
     "Software Engineer",
-    "Full-Stack Developer",
-    "Frontend Engineer",
+    "Associate Software Engineer",
+    "Java Developer",
+    "JavaScript",
+    "Python",
     "React",
-    "Next.js",
-    "TypeScript",
+    "Node.js",
+    "RESTful APIs",
+    "SQL",
+    "Amdocs",
     "Portfolio",
   ],
-  authors: [{ name: "Sakshi" }],
-  creator: "Sakshi",
+  authors: [{ name: "Sakshi Srivastava" }],
+  creator: "Sakshi Srivastava",
   icons: {
     icon: "/favicon.svg",
   },

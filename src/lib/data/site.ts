@@ -8,15 +8,14 @@ export const navLinks = [
 ] as const;
 
 export const siteConfig = {
-  name: "Sakshi",
-  role: "Software Engineer",
-  email: "hello@sakshi.dev",
-  location: "Bengaluru, India",
-  availability: "Open to senior & staff engineering roles",
+  name: "Sakshi Srivastava",
+  role: "Associate Software Engineer",
+  email: "sakshisrivastava55271@gmail.com",
+  location: "Greater Noida, India",
+  availability: "Open to software engineering opportunities",
   socials: {
-    github: "https://github.com/sakshi",
-    linkedin: "https://linkedin.com/in/sakshi",
-    twitter: "https://x.com/sakshi",
-    readcv: "https://read.cv/sakshi",
+    github: "https://github.com/sakshisrivastava",
+    linkedin: "https://linkedin.com/in/sakshisrivastava",
+    leetcode: "https://leetcode.com/sakshisrivastava",
   },
 };

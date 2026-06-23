@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "The resume of Sakshi, software engineer — six years of building and shipping across founding teams, design-system leadership, and freelance delivery. Print-ready and downloadable as PDF.",
+    "The resume of Sakshi Srivastava, Associate Software Engineer — experience at Amdocs and Kaspro Solutions, B.Tech in CSE from Galgotias University, and skills across Java, JavaScript, Python, and SQL. Print-ready and downloadable as PDF.",
   openGraph: {
-    title: "Resume · Sakshi",
+    title: "Resume · Sakshi Srivastava",
     description:
-      "Print-ready resume of Sakshi, software engineer. Download as PDF or read inline.",
+      "Print-ready resume of Sakshi Srivastava, Associate Software Engineer. Download as PDF or read inline.",
     type: "article",
   },
 };

@@ -10,7 +10,7 @@ import {
   MapPin,
   Github,
   Linkedin,
-  Twitter,
+  Code2,
   FileText,
   ChevronRight,
 } from "lucide-react";
@@ -61,7 +61,7 @@ export default function HomePage() {
               <br />
               I build software
               <br />
-              <span className="text-muted-foreground">that feels inevitable.</span>
+              <span className="text-muted-foreground">that just works.</span>
             </motion.h1>
 
             <motion.p
@@ -70,9 +70,9 @@ export default function HomePage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-6 max-w-xl text-pretty text-lg text-muted-foreground"
             >
-              A software engineer focused on the details most people never notice —
-              performance, motion, and the difference between 200ms and 50ms.
-              Currently building real-time analytics at scale.
+              An Associate Software Engineer at Amdocs, skilled in Java,
+              JavaScript, Python, and SQL — building responsive interfaces,
+              RESTful APIs, and reliable backend services in Agile environments.
             </motion.p>
 
             <motion.div
@@ -116,12 +116,12 @@ export default function HomePage() {
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn
               </Link>
               <Link
-                href={siteConfig.socials.twitter}
+                href={siteConfig.socials.leetcode}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 transition-colors hover:text-brand"
               >
-                <Twitter className="h-3.5 w-3.5" /> X
+                <Code2 className="h-3.5 w-3.5" /> LeetCode
               </Link>
             </motion.div>
           </div>
@@ -165,8 +165,8 @@ export default function HomePage() {
                       <span className="text-xs text-muted-foreground">{siteConfig.role}</span>
                     </div>
                     <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-                      <span>6+ years experience</span>
-                      <span>40+ projects shipped</span>
+                      <span>1+ year experience</span>
+                      <span>500+ DSA problems</span>
                     </div>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export default function HomePage() {
                 <span className="text-muted-foreground">not just assignments.</span>
               </>
             }
-            description="A selection of products and tools I've built end-to-end — from real-time analytics engines to design systems used across entire orgs."
+            description="A selection of projects I've built — from a healthcare management portal to an AI incident management system, across Java, Python, JavaScript, and React."
           />
           <Reveal>
             <Button asChild variant="outline" className="rounded-full">
@@ -233,9 +233,9 @@ export default function HomePage() {
               eyebrow="Experience"
               title={
                 <>
-                  Six years of building,
+                  Building, learning,
                   <br />
-                  <span className="text-muted-foreground">shipping, and leading.</span>
+                  <span className="text-muted-foreground">and shipping along the way.</span>
                 </>
               }
             />
@@ -293,8 +293,8 @@ export default function HomePage() {
               Have a role or project in mind?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-muted-foreground">
-              I&apos;m open to senior and staff engineering roles, and selectively take on
-              freelance work. I usually reply within 24 hours.
+              I&apos;m open to software engineering opportunities and would love
+              to hear about your team. I usually reply within 24 hours.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <MagneticButton href="/contact" variant="primary">

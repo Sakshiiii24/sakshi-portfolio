@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Six years of building, shipping, and scaling software — from founding-engineer roles to design-system leadership. The full career timeline, education, certifications, and achievements of Sakshi, software engineer.",
+    "The experience, education, certifications, and achievements of Sakshi Srivastava — from a web development internship to an Associate Software Engineer role at Amdocs.",
   openGraph: {
-    title: "Experience · Sakshi",
+    title: "Experience · Sakshi Srivastava",
     description:
-      "A career of building and shipping — work timeline, education, certifications, and notable achievements.",
+      "Work history, education, certifications, and achievements — Sakshi Srivastava, Associate Software Engineer.",
     type: "article",
   },
 };

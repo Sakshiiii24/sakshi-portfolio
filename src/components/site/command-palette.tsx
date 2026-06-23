@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
-import { Search, Moon, Sun, FileText, Mail, FolderGit2, User, Briefcase, Home, Github, Linkedin, Twitter } from "lucide-react";
+import { Search, Moon, Sun, FileText, Mail, FolderGit2, User, Briefcase, Home, Github, Linkedin, Code2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { navLinks } from "@/lib/data/site";
 import { siteConfig } from "@/lib/data/site";
@@ -143,11 +143,11 @@ export function CommandPalette() {
               <Linkedin className="h-4 w-4" /> Open LinkedIn
             </Command.Item>
             <Command.Item
-              value="twitter x"
-              onSelect={() => window.open(siteConfig.socials.twitter, "_blank")}
+              value="leetcode dsa problems"
+              onSelect={() => window.open(siteConfig.socials.leetcode, "_blank")}
               className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm aria-selected:bg-accent aria-selected:text-accent-foreground"
             >
-              <Twitter className="h-4 w-4" /> Open X / Twitter
+              <Code2 className="h-4 w-4" /> Open LeetCode
             </Command.Item>
           </Command.Group>
         </Command.List>

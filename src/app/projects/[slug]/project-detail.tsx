@@ -350,7 +350,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                 .
               </>
             }
-            description="Real results from real users. Every number below is measured in production or in the wild."
+            description="Real outcomes from real builds. Every number below reflects what the project delivered."
           />
 
           <StaggerGroup className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -445,7 +445,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                 .
               </>
             }
-            description="Every technology below was chosen for a specific reason — usually performance, ergonomics, or both."
+            description="Every technology below was chosen for a specific reason — fit for the problem, team, or learning goal."
           />
 
           <StaggerGroup className="mt-12 flex flex-wrap justify-center gap-2.5">

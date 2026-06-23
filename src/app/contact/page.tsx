@@ -12,7 +12,7 @@ import {
   Send,
   Github,
   Linkedin,
-  Twitter,
+  Code2,
   FileText,
   ArrowUpRight,
   Loader2,
@@ -36,27 +36,21 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const socialLinks = [
   {
     name: "GitHub",
-    handle: "@sakshi",
+    handle: "sakshisrivastava",
     href: siteConfig.socials.github,
     icon: Github,
   },
   {
     name: "LinkedIn",
-    handle: "in/sakshi",
+    handle: "in/sakshisrivastava",
     href: siteConfig.socials.linkedin,
     icon: Linkedin,
   },
   {
-    name: "X / Twitter",
-    handle: "@sakshi",
-    href: siteConfig.socials.twitter,
-    icon: Twitter,
-  },
-  {
-    name: "Read.cv",
-    handle: "read.cv/sakshi",
-    href: siteConfig.socials.readcv,
-    icon: FileText,
+    name: "LeetCode",
+    handle: "500+ problems solved",
+    href: siteConfig.socials.leetcode,
+    icon: Code2,
   },
 ];
 
@@ -69,12 +63,12 @@ const whatToExpect = [
   {
     icon: Globe,
     title: "Open to remote & relocation",
-    text: "I'm based in Bengaluru and happy to work across timezones. Relocation is on the table for the right team.",
+    text: "I'm based in Greater Noida and open to opportunities across India. Relocation is on the table for the right team.",
   },
   {
     icon: HeartHandshake,
     title: "Happy to do a tech chat first",
-    text: "Prefer an informal 30-minute call before a formal loop? Me too. Bring a problem you're trying to solve.",
+    text: "Prefer an informal 30-minute call or a quick DSA round before a formal loop? Me too. Bring a problem you're trying to solve.",
   },
   {
     icon: CalendarClock,
@@ -185,10 +179,10 @@ export default function ContactPage() {
           transition={{ duration: 0.7, delay: 0.18 }}
           className="mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
         >
-          Whether you&apos;re hiring for a senior or staff engineering role,
-          looking for a founding engineer, or just want to talk shop — I&apos;d
-          love to hear from you. Real replies from a real person, usually within
-          a day.
+          Whether you&apos;re hiring for a software engineering role,
+          looking for an intern or junior developer, or just want to talk
+          shop — I&apos;d love to hear from you. Real replies from a real person,
+          usually within a day.
         </motion.p>
 
         <motion.div
@@ -418,7 +412,7 @@ export default function ContactPage() {
                   <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                     Find me online
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {socialLinks.map((s) => {
                       const Icon = s.icon;
                       return (

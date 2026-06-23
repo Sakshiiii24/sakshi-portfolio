@@ -43,18 +43,18 @@ const achievementIcons: Record<Achievement["icon"], React.ElementType> = {
 
 export default function ExperiencePage() {
   const metaStats = [
-    { label: "Years building", value: "6+" },
-    { label: "Companies", value: "4" },
-    { label: "Projects shipped", value: "40+" },
-    { label: "GitHub stars", value: "6.3k" },
-    { label: "Engineers mentored", value: "60+" },
+    { label: "Experience", value: "1+ yr" },
+    { label: "Companies", value: "2" },
+    { label: "Projects built", value: "6+" },
+    { label: "DSA problems", value: "500+" },
+    { label: "CGPA", value: "8.55" },
   ];
 
   const accomplishmentStats = [
-    { value: "6+", label: "Years building for the web" },
-    { value: "40+", label: "Projects shipped to production" },
-    { value: "6.3k", label: "GitHub stars across open source" },
-    { value: "60+", label: "Engineers mentored 1:1" },
+    { value: "500+", label: "DSA problems solved" },
+    { value: "6+", label: "Full-stack projects built" },
+    { value: "8.55", label: "B.Tech CGPA out of 10" },
+    { value: "2", label: "Professional certifications" },
   ];
 
   return (
@@ -88,9 +88,10 @@ export default function ExperiencePage() {
           transition={{ duration: 0.7, delay: 0.18 }}
           className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
         >
-          Six years across founding teams, design-system leadership, and
-          freelance delivery — engineering products that scale to billions of
-          events and hundreds of thousands of users.
+          A year into my professional journey — from a web development
+          internship to an Associate Software Engineer role at Amdocs. Building
+          Java backend services, RESTful APIs, and responsive web apps in Agile
+          environments.
         </motion.p>
 
         {/* Meta row */}
@@ -130,7 +131,7 @@ export default function ExperiencePage() {
                 the engineer.
               </>
             }
-            description="Four chapters — from freelance MVPs to a founding-engineer seat. Every role left a system, a habit, or a team behind."
+            description="Two roles — from a web development internship to an Associate Software Engineer seat. Every role left a system, a habit, or a lesson behind."
           />
 
           <div className="mt-16 grid gap-12 lg:grid-cols-[200px_1fr] lg:gap-16">
@@ -138,7 +139,7 @@ export default function ExperiencePage() {
             <Reveal className="hidden lg:block">
               <div className="sticky top-32">
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  2018 → Now
+                  2025 → Now
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground text-pretty">
                   {experiences.length} roles,
@@ -259,7 +260,7 @@ export default function ExperiencePage() {
               were laid.
             </>
           }
-          description="Formal computer science training, plus continuous learning through rigorous professional programs."
+          description="Formal computer science training at Galgotias University, plus continuous learning through professional certifications."
         />
 
         <StaggerGroup className="mt-16 grid gap-6 md:grid-cols-2">
@@ -324,7 +325,7 @@ export default function ExperiencePage() {
                 .
               </>
             }
-            description="A small set of certifications I've actually maintained — cloud architecture, native development, and the platforms I ship on."
+            description="Certifications I've earned to keep my skills current — from core Java development to Generative AI."
           />
 
           <StaggerGroup className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -378,7 +379,7 @@ export default function ExperiencePage() {
               .
             </>
           }
-          description="Talks, mentorship, hackathon wins, and the open-source work I'm most proud of."
+          description="From solving 500+ DSA problems to earning a GenAI certification — the milestones I'm most proud of so far."
         />
 
         <StaggerGroup className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -459,8 +460,8 @@ export default function ExperiencePage() {
               <span className="italic text-gradient-brand">Grab the resume.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-muted-foreground">
-              The full PDF has detailed project metrics, references, and a deeper
-              breakdown of every role. Or just say hello — I read every message.
+              The full PDF has a detailed breakdown of my experience, projects,
+              and skills. Or just say hello — I read every message.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <MagneticButton href="/resume" variant="primary">

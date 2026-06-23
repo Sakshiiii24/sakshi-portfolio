@@ -34,171 +34,112 @@ export interface Achievement {
 
 export const experiences: ExperienceItem[] = [
   {
-    company: "Lumen Labs",
-    role: "Founding Engineer",
-    period: "Jan 2023 — Present",
-    location: "Remote",
+    company: "Amdocs",
+    role: "Associate Software Engineer",
+    period: "Jul 2025 — Present",
+    location: "Pune, India",
     current: true,
     summary:
-      "Building real-time product analytics from zero to 1,200+ workspaces. Own the storage engine, query planner, and core web app.",
+      "Building Java-based backend services and RESTful APIs for enterprise applications, working across service and data access layers in an Agile environment.",
     achievements: [
-      "Designed a columnar storage engine handling 2.4B events/day at 180ms p99",
-      "Built the founding team's engineering culture — hiring, code review, on-call",
-      "Shipped the v1 product in 9 weeks and reached first $1M ARR in 11 months",
-      "Mentored 4 engineers, two of whom now lead their own teams",
+      "Developed and maintained Java-based backend services, implementing business logic and feature enhancements for enterprise applications",
+      "Contributed to the design and implementation of backend functionality across service and data access layers, ensuring reliable and efficient application behavior",
+      "Developed and enhanced RESTful APIs to enable seamless communication and data exchange between application components",
+      "Analyzed application workflows, identified code-level issues, and implemented maintainable solutions to improve functionality and stability",
+      "Collaborated with cross-functional teams to gather requirements, deliver backend enhancements, and ensure successful production deployments",
     ],
-    stack: ["TypeScript", "Rust", "Next.js", "ClickHouse", "WebAssembly"],
+    stack: ["Java", "RESTful APIs", "SQL", "Oracle Database", "Agile", "Jira"],
   },
   {
-    company: "Northwind",
-    role: "Senior Frontend Engineer",
-    period: "Jun 2021 — Dec 2022",
-    location: "Bengaluru, India",
+    company: "Kaspro Solutions",
+    role: "Web Developer Intern",
+    period: "Jan 2025 — Jun 2025",
+    location: "Greater Noida, India",
     current: false,
     summary:
-      "Led the design system and core application frontend for a B2B SaaS serving 40k+ daily users.",
+      "Contributed to a live enterprise Java project — frontend enhancements, SQL queries, JDBC adapters, and Agile delivery including code reviews and testing.",
     achievements: [
-      "Architected the Atlas design system adopted across 14 products",
-      "Cut initial JS bundle by 47% through code-splitting and lazy hydration",
-      "Drove a migration from CRA to Next.js App Router with zero downtime",
-      "Established visual regression testing, reducing UI bugs by 63%",
+      "Contributed to application feature development using Java while working on a live enterprise project",
+      "Implemented frontend enhancements using HTML, CSS, and JavaScript to improve user experience",
+      "Wrote SQL queries for data retrieval and validation, supporting application requirements",
+      "Integrated JDBC adapters with MySQL databases to manage relational data, ensuring transactional integrity and secure schema execution",
+      "Participated in software design, code reviews, testing activities, debugging, and defect resolution within an Agile development framework",
     ],
-    stack: ["React", "TypeScript", "Next.js", "Radix UI", "Vitest"],
-  },
-  {
-    company: "Cobalt Studio",
-    role: "Frontend Engineer",
-    period: "Aug 2019 — May 2021",
-    location: "Pune, India",
-    current: false,
-    summary:
-      "Shipped marketing sites and web apps for early-stage startups, specializing in motion and performance.",
-    achievements: [
-      "Delivered 20+ client projects with a 100% on-time launch rate",
-      "Built a reusable animation toolkit adopted company-wide",
-      "Achieved 95+ Lighthouse scores across all delivered sites",
-      "Promoted to senior contributor within 14 months",
-    ],
-    stack: ["React", "Next.js", "Framer Motion", "GSAP", "Tailwind CSS"],
-  },
-  {
-    company: "Freelance",
-    role: "Full-Stack Developer",
-    period: "Jun 2018 — Jul 2019",
-    location: "Remote",
-    current: false,
-    summary:
-      "Built end-to-end web products for small businesses and indie founders.",
-    achievements: [
-      "Shipped 12 production apps end-to-end, from schema to deploy",
-      "Maintained a 4.9/5 client rating across 30+ contracts",
-      "Specialized in MVP delivery — average time to launch: 3 weeks",
-    ],
-    stack: ["Node.js", "React", "PostgreSQL", "Stripe", "AWS"],
+    stack: ["Java", "HTML5", "CSS3", "JavaScript", "MySQL", "JDBC", "Agile"],
   },
 ];
 
 export const education: EducationItem[] = [
   {
-    institution: "Indian Institute of Technology, Bombay",
+    institution: "Galgotias University",
     degree: "B.Tech in Computer Science & Engineering",
-    period: "2015 — 2019",
-    location: "Mumbai, India",
+    period: "2021 — 2025",
+    location: "Greater Noida, India",
     details:
-      "Graduated with distinction. Focus on distributed systems, human-computer interaction, and compilers.",
+      "Completed my B.Tech in CSE with a CGPA of 8.55, building strong foundations in OOP, DSA, operating systems, DBMS, and the software development lifecycle.",
     highlights: [
-      "CGPA: 9.1 / 10, graduated with distinction",
-      "Thesis: Conflict-free replicated data types for collaborative editing",
-      "Lead the campus web development club (300+ members)",
-      "Won the ACM-ICPC regional codeathon two years running",
-    ],
-  },
-  {
-    institution: "Stanford Online",
-    degree: "Professional Certificate in Machine Learning",
-    period: "2022",
-    location: "Online",
-    details:
-      "A rigorous program covering supervised and unsupervised learning, deep learning, and ML systems design.",
-    highlights: [
-      "Capstone: built a retrieval-augmented generation pipeline for technical Q&A",
-      "Top 5% of cohort on the final systems design project",
+      "CGPA: 8.55 / 10",
+      "Coursework: OOP, DSA, Operating Systems, DBMS, SDLC",
+      "Built 6+ full-stack and backend projects across Java, Python, and JavaScript",
+      "Solved 500+ DSA problems on LeetCode and GeeksforGeeks alongside coursework",
     ],
   },
 ];
 
 export const certifications: Certification[] = [
   {
-    name: "AWS Certified Solutions Architect — Associate",
-    issuer: "Amazon Web Services",
-    year: "2023",
-    credentialId: "AWS-PSA-2023-04421",
+    name: "Java Development Certification",
+    issuer: "Udemy",
+    year: "2024",
   },
   {
-    name: "Google Professional Cloud Developer",
-    issuer: "Google Cloud",
-    year: "2022",
-    credentialId: "GCP-PCD-2022-11890",
-  },
-  {
-    name: "Certified Kubernetes Application Developer (CKAD)",
-    issuer: "Cloud Native Computing Foundation",
-    year: "2021",
-    credentialId: "CKAD-2021-7765",
-  },
-  {
-    name: "Meta Front-End Developer Professional",
-    issuer: "Meta",
-    year: "2021",
-  },
-  {
-    name: "Stripe Certified Developer",
-    issuer: "Stripe",
-    year: "2020",
+    name: "GenAI Certification",
+    issuer: "Amdocs",
+    year: "2025",
   },
 ];
 
 export const achievements: Achievement[] = [
   {
-    title: "Speaker — ReactConf India",
+    title: "Solved 500+ DSA problems",
     description:
-      "Delivered a talk on building zero-runtime design systems to 1,200+ engineers.",
-    year: "2024",
-    icon: "globe",
+      "Tackled 500+ data structures and algorithms problems across LeetCode and GeeksforGeeks — arrays, trees, graphs, DP, and everything in between.",
+    year: "2022 — 2024",
+    icon: "code",
   },
   {
-    title: "Open Source — 6.3k GitHub stars",
+    title: "GenAI Certified by Amdocs",
     description:
-      "Maintained three open-source libraries with a combined 6,300+ stars and 80+ contributors.",
+      "Earned the Generative AI certification from Amdocs, covering LLM fundamentals, prompt engineering, and applied GenAI use cases.",
+    year: "2025",
+    icon: "sparkles",
+  },
+  {
+    title: "Java Development Certification",
+    description:
+      "Completed a comprehensive Java development program on Udemy — core Java, OOP, collections, JDBC, and backend fundamentals.",
     year: "2024",
     icon: "star",
   },
   {
-    title: "ACM-ICPC Regional Finalist",
+    title: "B.Tech CGPA 8.55 / 10",
     description:
-      "Placed top 20 in the Asia regionals across two consecutive years.",
-    year: "2018",
+      "Graduated from Galgotias University with a strong academic record across core CS coursework — OOP, DSA, OS, and DBMS.",
+    year: "2025",
     icon: "trophy",
   },
   {
-    title: "Mentor — ADPList",
+    title: "Internship to full-time role",
     description:
-      "Mentored 60+ early-career engineers on frontend, system design, and career growth.",
-    year: "2023",
+      "Converted my web developer internship into a full-time Associate Software Engineer role at Amdocs within months.",
+    year: "2025",
     icon: "users",
   },
   {
-    title: "Hackathon Winner — Smart India Hackathon",
+    title: "6+ full-stack projects shipped",
     description:
-      "Led a 6-person team to first place out of 400+ teams with an accessibility-first edtech app.",
-    year: "2019",
-    icon: "sparkles",
-  },
-  {
-    title: "Top Contributor — Hacktoberfest",
-    description:
-      "Merged 30+ meaningful contributions across 12 open-source repositories.",
-    year: "2022",
-    icon: "code",
+      "Built and shipped 6+ projects spanning web apps, backend APIs, and AI tools — from a healthcare portal to an AI incident management system.",
+    year: "2023 — 2024",
+    icon: "globe",
   },
 ];

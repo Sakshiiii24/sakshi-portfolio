@@ -30,13 +30,13 @@ export default function AboutPage() {
     },
     {
       icon: Code2,
-      label: "Experience",
-      value: "6+ years building",
+      label: "DSA",
+      value: "500+ problems solved",
     },
     {
       icon: Heart,
-      label: "Open source",
-      value: "Maintainer & mentor",
+      label: "Projects",
+      value: "6+ full-stack built",
     },
   ];
 
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 {aboutContent.role}
               </p>
               <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">
-                Est. 2015
+                Est. 2021
               </p>
             </div>
           </Reveal>
@@ -142,13 +142,13 @@ export default function AboutPage() {
           eyebrow="The journey"
           title={
             <>
-              A decade of{" "}
-              <span className="font-display italic text-gradient-brand">firsts</span>,
+              From first commit to{" "}
+              <span className="font-display italic text-gradient-brand">first</span>{" "}
               <br />
-              <span className="text-muted-foreground">shipments, and lessons.</span>
+              <span className="text-muted-foreground">full-time role.</span>
             </>
           }
-          description="Every milestone left a mark on how I build today. From late-night hack sessions at IIT Bombay to scaling real-time infrastructure to billions of events."
+          description="Every milestone left a mark on how I build today. From late-night coding sessions at Galgotias University to shipping backend services at Amdocs."
         />
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[200px_1fr] lg:gap-16">
@@ -156,7 +156,7 @@ export default function AboutPage() {
           <Reveal className="hidden lg:block">
             <div className="sticky top-32">
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                2015 → Now
+                2021 → Now
               </p>
               <p className="mt-2 text-sm text-muted-foreground text-pretty">
                 {aboutContent.journey.length} chapters,
@@ -345,8 +345,8 @@ export default function AboutPage() {
               <span className="italic text-gradient-brand">Let&apos;s talk.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-muted-foreground">
-              Whether it&apos;s a senior role, a freelance project, or just a hello — I
-              read every message and usually reply within a day.
+              Whether it&apos;s a software engineering role, an internship, or just a
+              hello — I read every message and usually reply within a day.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <MagneticButton href="/contact" variant="primary">

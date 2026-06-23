@@ -81,7 +81,7 @@ export default function ProjectsPage() {
           className="mt-6 text-balance font-display text-5xl font-normal leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
         >
           Things I&apos;ve{" "}
-          <span className="text-gradient-brand italic">shipped</span>,
+          <span className="text-gradient-brand italic">built</span>,
           <br />
           <span className="text-muted-foreground">broken, and rebuilt.</span>
         </motion.h1>
@@ -92,10 +92,10 @@ export default function ProjectsPage() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-6 max-w-2xl text-pretty text-lg text-muted-foreground"
         >
-          A curated selection of products, tools, and experiments &mdash; from
-          real-time analytics engines processing billions of events to design
-          systems used across entire orgs. Filter by category or stack to find
-          what matters to you.
+          A curated selection of web apps, backend APIs, and full-stack
+          projects &mdash; from a healthcare management portal to an AI incident
+          management system. Filter by category or stack to find what matters
+          to you.
         </motion.p>
 
         <motion.div
