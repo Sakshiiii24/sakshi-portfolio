@@ -44,8 +44,8 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-medium backdrop-blur"
             >
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
               </span>
               {siteConfig.availability}
             </motion.div>
@@ -254,7 +254,7 @@ export default function HomePage() {
                 <div className="group relative overflow-hidden rounded-2xl border border-border bg-card/60 p-6 transition-colors hover:border-brand/40 sm:p-7">
                   <div className="grid gap-4 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-8">
                     <div className="flex items-center gap-3">
-                      <span className={`h-2.5 w-2.5 rounded-full ${exp.current ? "bg-emerald-400" : "bg-muted-foreground/40"}`} />
+                      <span className={`h-2.5 w-2.5 rounded-full ${exp.current ? "bg-brand" : "bg-muted-foreground/40"}`} />
                       <span className="font-mono text-xs text-muted-foreground">
                         {exp.period}
                       </span>

@@ -25,29 +25,31 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const accentText: Record<Project["accent"], string> = {
-  amber: "text-amber-500 dark:text-amber-400",
-  rose: "text-rose-500 dark:text-rose-400",
-  emerald: "text-emerald-500 dark:text-emerald-400",
-  violet: "text-violet-500 dark:text-violet-400",
-  sky: "text-sky-500 dark:text-sky-400",
+  blue: "text-blue-500 dark:text-blue-400",
+  purple: "text-violet-500 dark:text-violet-400",
+  cyan: "text-cyan-500 dark:text-cyan-400",
+  indigo: "text-indigo-500 dark:text-indigo-400",
+  violet: "text-violet-400 dark:text-violet-300",
 };
 
 const accentGlow: Record<Project["accent"], string> = {
-  amber: "bg-amber-500/30",
-  rose: "bg-rose-500/30",
-  emerald: "bg-emerald-500/30",
-  violet: "bg-violet-500/30",
-  sky: "bg-sky-500/30",
+  blue: "bg-blue-500/30",
+  purple: "bg-violet-500/30",
+  cyan: "bg-cyan-500/30",
+  indigo: "bg-indigo-500/30",
+  violet: "bg-violet-400/30",
 };
 
 const accentIconBg: Record<Project["accent"], string> = {
-  amber: "bg-amber-500/10 text-amber-500 dark:text-amber-400 ring-amber-500/20",
-  rose: "bg-rose-500/10 text-rose-500 dark:text-rose-400 ring-rose-500/20",
-  emerald:
-    "bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 ring-emerald-500/20",
-  violet:
+  blue: "bg-blue-500/10 text-blue-500 dark:text-blue-400 ring-blue-500/20",
+  purple:
     "bg-violet-500/10 text-violet-500 dark:text-violet-400 ring-violet-500/20",
-  sky: "bg-sky-500/10 text-sky-500 dark:text-sky-400 ring-sky-500/20",
+  cyan:
+    "bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 ring-cyan-500/20",
+  indigo:
+    "bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 ring-indigo-500/20",
+  violet:
+    "bg-violet-400/10 text-violet-500 dark:text-violet-300 ring-violet-400/20",
 };
 
 export function ProjectDetail({ project }: { project: Project }) {
@@ -102,11 +104,11 @@ export function ProjectDetail({ project }: { project: Project }) {
               <span
                 className={cn(
                   "h-1.5 w-1.5 rounded-full",
-                  project.accent === "amber" && "bg-amber-500",
-                  project.accent === "rose" && "bg-rose-500",
-                  project.accent === "emerald" && "bg-emerald-500",
-                  project.accent === "violet" && "bg-violet-500",
-                  project.accent === "sky" && "bg-sky-500"
+                  project.accent === "blue" && "bg-blue-500",
+                  project.accent === "purple" && "bg-violet-500",
+                  project.accent === "cyan" && "bg-cyan-500",
+                  project.accent === "indigo" && "bg-indigo-500",
+                  project.accent === "violet" && "bg-violet-400"
                 )}
               />
               {project.category}

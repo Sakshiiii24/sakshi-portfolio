@@ -39,7 +39,7 @@ export function CustomCursor() {
         ring.style.opacity = "1";
       }
       // Position the dot instantly
-      dot.style.transform = `translate3d(${mouseX - 3.5}px, ${mouseY - 3.5}px, 0)`;
+      dot.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
 
       // Detect interactive target
       const target = e.target as HTMLElement | null;
@@ -62,7 +62,7 @@ export function CustomCursor() {
       // Smoothly ease the ring toward the mouse
       ringX += (mouseX - ringX) * 0.18;
       ringY += (mouseY - ringY) * 0.18;
-      ring.style.transform = `translate3d(${ringX - 18}px, ${ringY - 18}px, 0)`;
+      ring.style.transform = `translate3d(${ringX - 17}px, ${ringY - 17}px, 0)`;
       rafId = requestAnimationFrame(tick);
     };
 

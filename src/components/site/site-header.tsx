@@ -51,7 +51,7 @@ export function SiteHeader() {
         >
           <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-sm font-semibold text-brand-foreground shadow-glow-brand">
             S
-            <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-background" />
+            <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-brand ring-2 ring-background" />
           </span>
           <span className="hidden flex-col leading-none sm:flex">
             <span className="text-sm font-semibold tracking-tight">

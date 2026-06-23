@@ -26,7 +26,7 @@ export interface Project {
   duration: string;
   liveUrl?: string;
   githubUrl?: string;
-  accent: "amber" | "rose" | "emerald" | "violet" | "sky";
+  accent: "blue" | "purple" | "cyan" | "indigo" | "violet";
   coverGradient: string;
 }
 
@@ -58,8 +58,8 @@ export const projects: Project[] = [
     role: "Developer",
     duration: "2024",
     githubUrl: "https://github.com/sakshisrivastava",
-    accent: "violet",
-    coverGradient: "from-violet-500/30 via-purple-500/20 to-fuchsia-500/30",
+    accent: "purple",
+    coverGradient: "from-violet-500/30 via-indigo-500/20 to-blue-500/30",
   },
   {
     slug: "healthcare-management-system",
@@ -88,8 +88,8 @@ export const projects: Project[] = [
     role: "Full-Stack Developer",
     duration: "2024",
     githubUrl: "https://github.com/sakshisrivastava",
-    accent: "emerald",
-    coverGradient: "from-emerald-500/30 via-teal-500/20 to-cyan-500/30",
+    accent: "cyan",
+    coverGradient: "from-cyan-400/30 via-sky-500/20 to-blue-500/30",
   },
   {
     slug: "dsa-visualizer",
@@ -119,8 +119,8 @@ export const projects: Project[] = [
     duration: "2024",
     githubUrl: "https://github.com/sakshisrivastava",
     liveUrl: "https://example.com/dsa-visualizer",
-    accent: "amber",
-    coverGradient: "from-amber-500/30 via-orange-500/20 to-rose-500/30",
+    accent: "blue",
+    coverGradient: "from-blue-500/30 via-indigo-500/20 to-violet-500/30",
   },
   {
     slug: "taskflow-api",
@@ -149,8 +149,8 @@ export const projects: Project[] = [
     role: "Backend Developer",
     duration: "2024",
     githubUrl: "https://github.com/sakshisrivastava",
-    accent: "sky",
-    coverGradient: "from-sky-500/30 via-blue-500/20 to-indigo-500/30",
+    accent: "indigo",
+    coverGradient: "from-indigo-500/30 via-blue-500/20 to-violet-500/30",
   },
   {
     slug: "library-management-system",
@@ -179,8 +179,8 @@ export const projects: Project[] = [
     role: "Java Developer",
     duration: "2023",
     githubUrl: "https://github.com/sakshisrivastava",
-    accent: "rose",
-    coverGradient: "from-rose-500/30 via-pink-500/20 to-orange-500/30",
+    accent: "violet",
+    coverGradient: "from-violet-500/30 via-purple-500/20 to-indigo-500/30",
   },
   {
     slug: "weather-dashboard",
@@ -209,8 +209,8 @@ export const projects: Project[] = [
     role: "Frontend Developer",
     duration: "2023",
     githubUrl: "https://github.com/sakshisrivastava",
-    accent: "amber",
-    coverGradient: "from-amber-500/30 via-yellow-500/20 to-lime-500/30",
+    accent: "cyan",
+    coverGradient: "from-cyan-400/30 via-blue-500/20 to-indigo-500/30",
   },
 ];
 

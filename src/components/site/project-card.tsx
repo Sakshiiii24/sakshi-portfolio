@@ -9,11 +9,11 @@ import type { Project } from "@/lib/data/projects";
 import { Badge } from "@/components/ui/badge";
 
 const accentMap: Record<Project["accent"], string> = {
-  amber: "text-amber-500 dark:text-amber-400",
-  rose: "text-rose-500 dark:text-rose-400",
-  emerald: "text-emerald-500 dark:text-emerald-400",
-  violet: "text-violet-500 dark:text-violet-400",
-  sky: "text-sky-500 dark:text-sky-400",
+  blue: "text-blue-500 dark:text-blue-400",
+  purple: "text-violet-500 dark:text-violet-400",
+  cyan: "text-cyan-500 dark:text-cyan-400",
+  indigo: "text-indigo-500 dark:text-indigo-400",
+  violet: "text-violet-400 dark:text-violet-300",
 };
 
 interface ProjectCardProps {

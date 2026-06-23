@@ -283,3 +283,34 @@ Stage Summary:
 - Portfolio now authentically reflects Sakshi Srivastava's real resume: Java/JS/Python/SQL stack, Amdocs + Kaspro experience, Galgotias University (CGPA 8.55), 2 real projects + 4 matching added (6 total), Java/GenAI certs, 500+ DSA achievement
 - All social links now GitHub/LinkedIn/LeetCode (no fake Twitter/Read.cv)
 - Lint clean. All routes 200. Browser-verified: home, about, projects (+5 detail pages), experience, contact, resume all render correct real content with no errors.
+
+---
+Task ID: THEME-OVERHAUL
+Agent: orchestrator
+Task: Premium visual theme overhaul — blue/purple/cyan palette, depth, sophistication
+
+Work Log:
+- globals.css full rewrite:
+  * Dark theme: deep near-black background (#0A0A0A oklch 0.13), #121214 cards, #F8F8F8 text, #A1A1AA muted
+  * Light theme: clean near-white (#FCFCFD), pure white cards, cool gray borders, #71717A muted
+  * Brand accent = electric blue #4F8CFF (oklch 0.63 0.19 258); brand-2 = soft purple #8B5CF6; brand-3 = cyan #22D3EE
+  * Gradients: primary blue→purple (.bg-gradient-brand / .text-gradient-brand), secondary purple→cyan (.bg-gradient-brand-cool)
+  * Premium layered shadows via CSS vars (--shadow-premium, --shadow-premium-hover, --shadow-glow) — dark mode uses dark shadow + inset hairline highlight + brand glow on hover; light mode uses soft cool-gray shadows
+  * .lift-on-hover now deepens shadow on hover (translateY -3px + hover shadow) — works with .shadow-premium base, no page edits needed
+  * Refined .glass (less frosty: 72% opacity, 14px blur), finer .bg-grid (48px, 4.5% opacity), lower .aurora-blob opacity (0.28), lower noise (0.028)
+  * Typography: base letter-spacing -0.025em on headings, body -0.011em, font-feature-settings
+  * Custom cursor refined: 6px dot, 1px ring (34px), smoother easing, cursor-down state (26px), cursor-hover (60px)
+- interactive-background.tsx: lower blob opacities, blue pointer glow (opacity 0.10), finer grid, vignette
+- custom-cursor.tsx: fixed dot/ring centering offsets for new sizes (-3, -17)
+- Project accents recolored to cool palette: renamed union to "blue"|"purple"|"cyan"|"indigo"|"violet"; updated all 6 projects' accent + coverGradient (blue/indigo/violet/cyan tones); updated accentMap (project-card.tsx) and accentText/accentGlow/accentIconBg + hero dot switch (project-detail.tsx)
+- Replaced ALL emerald "available/current" status indicators with brand blue across 6 files (home, about, experience, contact, footer, header) for full color cohesion — no green/orange/amber/rose remains anywhere
+- Verified: lint clean (0 errors), all 12 routes 200, no hydration/runtime errors
+- VLM visual verification (dark home, dark projects, light home): confirmed deep near-black bg, cool blue/purple/cyan accents, premium/sophisticated feel, good card depth, clean readable light mode — "not generic/AI"
+
+Stage Summary:
+- Complete visual identity change from warm amber/rose/emerald to sophisticated electric-blue/purple/cyan on deep near-black
+- Premium layered shadows give cards real depth; hover states lift + glow subtly
+- Cohesive single-accent system (blue→purple gradient used sparingly on CTAs, names, section accent words)
+- Dark and light modes both verified premium and readable
+- All animations preserved (reveal, stagger, magnetic, page transitions) but tuned smoother/slower for "expensive" feel
+- Responsive (iPhone 14 verified) + accessible (semantic HTML, ARIA, keyboard nav unchanged)

@@ -148,8 +148,8 @@ export default function ExperiencePage() {
                 </p>
                 <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
                   </span>
                   Currently at {experiences[0].company}
                 </div>
@@ -158,7 +158,7 @@ export default function ExperiencePage() {
 
             {/* Timeline */}
             <div className="relative">
-              <div className="absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-emerald-400/70 via-brand/40 to-border" />
+              <div className="absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-brand/70 via-brand/40 to-border" />
               <StaggerGroup className="space-y-12">
                 {experiences.map((exp) => (
                   <StaggerItem key={`${exp.company}-${exp.period}`}>
@@ -167,8 +167,8 @@ export default function ExperiencePage() {
                       <div className="relative z-10 mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-border bg-card shadow-premium">
                         {exp.current ? (
                           <span className="relative flex h-3 w-3">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500 shadow-[0_0_12px] shadow-emerald-500/60" />
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
+                            <span className="relative inline-flex h-3 w-3 rounded-full bg-brand shadow-[0_0_12px] shadow-brand/60" />
                           </span>
                         ) : (
                           <span className="h-2.5 w-2.5 rounded-full bg-gradient-brand" />
@@ -185,9 +185,9 @@ export default function ExperiencePage() {
                           {exp.current && (
                             <Badge
                               variant="outline"
-                              className="border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                              className="border-brand/40 bg-brand/10 text-brand dark:text-brand"
                             >
-                              <span className="mr-1 h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                              <span className="mr-1 h-1.5 w-1.5 rounded-full bg-brand" />
                               Current
                             </Badge>
                           )}

@@ -95,7 +95,7 @@ export function SiteFooter() {
             © {year} {siteConfig.name}. Designed & built with care.
           </p>
           <p className="flex items-center gap-1.5">
-            <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+            <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
             Available for new opportunities
           </p>
         </div>
