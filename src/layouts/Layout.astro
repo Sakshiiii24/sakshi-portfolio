@@ -1,23 +1,126 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import { portfolioData } from '../data/portfolio';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = `${portfolioData.personal.name} | ${portfolioData.personal.title}`,
+  description = portfolioData.personal.intro,
+  image = "/og-image.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sakshiiii24.github.io');
+const sitemapURL = new URL('/sitemap.xml', Astro.site || 'https://sakshiiii24.github.io');
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": portfolioData.personal.name,
+  "url": canonicalURL.href,
+  "sameAs": [
+    portfolioData.personal.github,
+    portfolioData.personal.linkedin
+  ],
+  "jobTitle": portfolioData.personal.title,
+  "description": description,
+  "knowsAbout": portfolioData.skills.flatMap(cat => cat.skills.map(s => s.name))
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href={sitemapURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content={portfolioData.personal.name} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Google Fonts Preconnect and Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data -->
+    <script is:inline type="application/ld+json" is:raw set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Theme Initialization Script to Prevent Light Mode FOUC -->
+    <script is:inline>
+      const getThemePreference = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+      const isDark = getThemePreference() === 'dark';
+      document.documentElement.classList.toggle('dark', isDark);
+    </script>
+  </head>
+  <body class="bg-white dark:bg-black text-neutral-800 dark:text-neutral-200 font-sans selection:bg-neutral-200 dark:selection:bg-neutral-800 selection:text-black dark:selection:text-white antialiased overflow-x-hidden min-h-screen flex flex-col">
+    <!-- Sticky Navigation Header -->
+    <Header />
+
+    <slot />
+
+    <!-- Brand Footing Layout -->
+    <Footer />
+
+    <!-- Spotlight mouse follow handler script for .spotlight-card elements -->
+    <script>
+      const initSpotlightCards = () => {
+        const cards = document.querySelectorAll('.spotlight-card');
+        
+        const handleMouseMove = (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          const card = mouseEvent.currentTarget as HTMLElement;
+          const rect = card.getBoundingClientRect();
+          const x = mouseEvent.clientX - rect.left;
+          const y = mouseEvent.clientY - rect.top;
+          
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        };
+        
+        cards.forEach(card => {
+          card.addEventListener('mousemove', handleMouseMove);
+        });
+      };
+
+      // Run on initial page load
+      initSpotlightCards();
+      
+      // Run on page transition (Astro View Transitions compatibility)
+      document.addEventListener('astro:after-swap', initSpotlightCards);
+    </script>
+  </body>
+</html>

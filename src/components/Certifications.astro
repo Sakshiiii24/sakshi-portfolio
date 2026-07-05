@@ -1,0 +1,49 @@
+---
+import { portfolioData } from '../data/portfolio';
+import Icon from './Icon.astro';
+---
+
+<section id="certifications" class="w-full bg-white dark:bg-black py-24 px-6 border-b border-neutral-200 dark:border-neutral-900" aria-label="Certifications">
+  <div class="mx-auto max-w-5xl">
+    
+    <!-- Section Title -->
+    <div class="flex flex-col gap-2 mb-16">
+      <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">06 / Credentials</span>
+      <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Certifications</h2>
+    </div>
+
+    <!-- Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {portfolioData.certifications.map(cert => (
+        <div class="spotlight-card p-6 flex items-start justify-between gap-4">
+          
+          <div class="flex items-start gap-3.5">
+            <!-- Badge Icon -->
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
+              <Icon name="shield-check" size={16} />
+            </div>
+            <!-- Details -->
+            <div class="flex flex-col gap-1">
+              <span class="font-mono text-[10px] text-neutral-400 dark:text-neutral-500">{cert.date}</span>
+              <h3 class="text-sm font-semibold text-neutral-900 dark:text-white tracking-tight leading-tight">{cert.name}</h3>
+              <span class="text-xs text-neutral-600 dark:text-neutral-400">{cert.issuer}</span>
+            </div>
+          </div>
+
+          <!-- External Link Button -->
+          {cert.link && (
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="h-8 w-8 flex shrink-0 items-center justify-center rounded-md border border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors"
+              aria-label={`Verify certification for ${cert.name}`}
+            >
+              <Icon name="external-link" size={12} />
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

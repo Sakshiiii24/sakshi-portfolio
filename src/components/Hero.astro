@@ -1,0 +1,108 @@
+---
+import { portfolioData } from '../data/portfolio';
+import Icon from './Icon.astro';
+---
+
+<section
+  id="hero"
+  class="relative flex min-h-[90vh] md:min-h-screen w-full items-center justify-center overflow-hidden bg-white dark:bg-black px-6 pt-16"
+  aria-label="Welcome section"
+>
+  <!-- Moving Grid Background -->
+  <div class="absolute inset-0 grid-bg opacity-40 z-0"></div>
+  
+  <!-- Subtle ambient radial lights -->
+  <div class="absolute top-[20%] left-[20%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] rounded-full bg-neutral-200/20 dark:bg-neutral-800/10 blur-[80px] md:blur-[120px] animate-float z-0"></div>
+  <div class="absolute bottom-[20%] right-[20%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-neutral-300/10 dark:bg-neutral-900/20 blur-[90px] md:blur-[140px] animate-pulse-slow z-0" style="animation-delay: -4s;"></div>
+
+  <!-- Hero Content Wrap -->
+  <div class="relative mx-auto max-w-4xl text-center z-10 flex flex-col items-center gap-6">
+    
+    <!-- Availability Badge -->
+    <div 
+      class="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50/60 dark:bg-neutral-950/60 px-3 py-1 text-[11px] text-neutral-500 dark:text-neutral-400 font-mono"
+      style="animation-delay: 100ms; opacity: 0; animation-fill-mode: forwards;"
+    >
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span>Available for full-time opportunities</span>
+    </div>
+
+    <!-- Title and Subtitle -->
+    <h1 
+      class="animate-fade-in-up text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl bg-gradient-to-b from-neutral-950 to-neutral-500 dark:from-white dark:to-neutral-400 bg-clip-text text-transparent leading-[1.1] max-w-3xl"
+      style="animation-delay: 200ms; opacity: 0; animation-fill-mode: forwards;"
+    >
+      {portfolioData.personal.name}
+    </h1>
+    
+    <p 
+      class="animate-fade-in-up text-lg md:text-xl font-medium tracking-tight text-neutral-800 dark:text-neutral-200"
+      style="animation-delay: 350ms; opacity: 0; animation-fill-mode: forwards;"
+    >
+      {portfolioData.personal.title}
+    </p>
+
+    <!-- Professional Introduction -->
+    <p 
+      class="animate-fade-in-up max-w-xl text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans"
+      style="animation-delay: 500ms; opacity: 0; animation-fill-mode: forwards;"
+    >
+      {portfolioData.personal.intro}
+    </p>
+
+    <!-- Action Buttons -->
+    <div 
+      class="animate-fade-in-up flex flex-wrap justify-center items-center gap-4 mt-4"
+      style="animation-delay: 650ms; opacity: 0; animation-fill-mode: forwards;"
+    >
+      <a
+        href="/projects"
+        class="inline-flex h-11 items-center justify-center rounded-lg bg-neutral-950 text-white dark:bg-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 active:scale-[0.98] transition-all duration-200 px-6 text-sm font-medium"
+        aria-label="View portfolio projects"
+      >
+        View Projects
+      </a>
+      
+      <a
+        href="/contact"
+        class="inline-flex h-11 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black px-6 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-300 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-900 active:scale-[0.98] transition-all duration-200"
+        aria-label="Navigate to contact section"
+      >
+        Contact Me
+      </a>
+      
+      <a
+        href={portfolioData.personal.resumeUrl}
+        download
+        class="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 px-6 text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-900 active:scale-[0.98] transition-all duration-200"
+        aria-label="Download resume PDF"
+      >
+        <span>Download Resume</span>
+        <Icon name="download" size={14} />
+      </a>
+    </div>
+  </div>
+
+  <!-- Smooth bottom visual fade to next section -->
+  <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none z-10"></div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

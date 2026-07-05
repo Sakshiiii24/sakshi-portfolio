@@ -1,0 +1,208 @@
+---
+import { portfolioData } from '../data/portfolio';
+import Icon from './Icon.astro';
+
+interface Props {
+  featuredOnly?: boolean;
+}
+
+const { featuredOnly = false } = Astro.props;
+
+const projects = featuredOnly 
+  ? portfolioData.projects.filter(p => p.featured)
+  : portfolioData.projects;
+---
+
+<section id="projects" class="w-full bg-white dark:bg-black py-24 px-6 border-b border-neutral-200 dark:border-neutral-900" aria-label="Projects">
+  <div class="mx-auto max-w-5xl">
+    
+    <!-- Section Title -->
+    <div class="flex flex-col gap-2 mb-16">
+      <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">04 / Projects</span>
+      <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+        {featuredOnly ? "Featured Creations" : "All Creations"}
+      </h2>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="flex flex-col gap-8">
+      
+      <!-- Loop through projects -->
+      {projects.map((project) => {
+        const isFeatured = project.featured;
+        
+        return (
+          <div 
+            class={`spotlight-card group p-6 flex flex-col ${isFeatured ? 'lg:grid lg:grid-cols-12 gap-8' : 'gap-6'}`}
+          >
+            <!-- Project Mockup / Image Visual -->
+            <div class={`${isFeatured ? 'lg:col-span-6' : 'w-full'} flex items-center justify-center rounded-lg bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 overflow-hidden relative aspect-video`}>
+              
+              <!-- macOS Window Header Mockup -->
+              <div class="absolute top-0 inset-x-0 h-6 border-b border-neutral-200 dark:border-neutral-900 bg-neutral-100/50 dark:bg-neutral-900/50 flex items-center px-3 gap-1.5 z-10">
+                <div class="h-2 w-2 rounded-full bg-neutral-300 dark:bg-neutral-800"></div>
+                <div class="h-2 w-2 rounded-full bg-neutral-300 dark:bg-neutral-800"></div>
+                <div class="h-2 w-2 rounded-full bg-neutral-300 dark:bg-neutral-800"></div>
+              </div>
+
+              <!-- Stylized SVG Content based on Project Title -->
+              {project.title === "Versal UI" && (
+                <svg viewBox="0 0 400 200" fill="none" class="w-full h-full p-8 pt-10 text-neutral-400 dark:text-neutral-600">
+                  <rect x="20" y="20" width="100" height="24" rx="4" class="fill-neutral-900/5 dark:fill-white/3 stroke-neutral-900/10 dark:stroke-white/5" />
+                  <rect x="32" y="27" width="40" height="10" rx="2" class="fill-neutral-900/15 dark:fill-white/10" />
+                  
+                  <rect x="130" y="20" width="80" height="24" rx="12" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-900/10 dark:stroke-white/5" />
+                  <circle cx="142" cy="32" r="4" fill="#10b981" />
+                  <rect x="154" y="27" width="40" height="10" rx="2" class="fill-neutral-900/10 dark:fill-white/8" />
+
+                  <rect x="20" y="54" width="220" height="40" rx="6" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-900/5 dark:stroke-white/5" />
+                  <circle cx="36" cy="74" r="8" class="fill-neutral-900/8 dark:fill-white/5" />
+                  <rect x="52" y="68" width="100" height="6" rx="1" class="fill-neutral-900/15 dark:fill-white/8" />
+                  <rect x="52" y="78" width="60" height="4" rx="1" class="fill-neutral-900/8 dark:fill-white/4" />
+                  
+                  <!-- Toggle widget slider -->
+                  <rect x="300" y="20" width="40" height="20" rx="10" class="fill-neutral-900/8 dark:fill-white/5 stroke-neutral-900/15 dark:stroke-white/10" />
+                  <circle cx="328" cy="30" r="7" class="fill-neutral-900 dark:fill-white" />
+                  
+                  <!-- Accordion / Tabs widget representation -->
+                  <line x1="20" y1="120" x2="380" y2="120" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  <rect x="20" y="118" width="60" height="4" class="fill-neutral-900 dark:fill-white" />
+                  
+                  <rect x="20" y="140" width="100" height="30" rx="4" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-900/10 dark:stroke-white/5" />
+                  <circle cx="35" cy="155" r="4" class="fill-neutral-900/20 dark:fill-white/20" />
+                  <rect x="47" y="151" width="50" height="8" rx="2" class="fill-neutral-900/15 dark:fill-white/8" />
+                  
+                  <rect x="130" y="140" width="100" height="30" rx="4" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-900/10 dark:stroke-white/5" />
+                  <circle cx="145" cy="155" r="4" class="fill-neutral-900/20 dark:fill-white/20" />
+                  <rect x="157" y="151" width="50" height="8" rx="2" class="fill-neutral-900/15 dark:fill-white/8" />
+                </svg>
+              )}
+
+              {project.title === "Chronos Dashboard" && (
+                <svg viewBox="0 0 400 200" fill="none" class="w-full h-full p-8 pt-10 text-neutral-400 dark:text-neutral-600">
+                  <!-- Dashboard Grid -->
+                  <rect x="20" y="20" width="100" height="50" rx="6" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-900/10 dark:stroke-white/5" />
+                  <rect x="32" y="30" width="40" height="6" rx="1" class="fill-neutral-900/8 dark:fill-white/5" />
+                  <text x="32" y="55" class="fill-neutral-900 dark:fill-white" font-family="monospace" font-size="14" font-weight="bold">99.8%</text>
+
+                  <rect x="130" y="20" width="100" height="50" rx="6" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-900/10 dark:stroke-white/5" />
+                  <rect x="142" y="30" width="40" height="6" rx="1" class="fill-neutral-900/8 dark:fill-white/5" />
+                  <text x="142" y="55" class="fill-neutral-900 dark:fill-white" font-family="monospace" font-size="14" font-weight="bold">14ms</text>
+
+                  <!-- Main chart line -->
+                  <rect x="20" y="85" width="360" height="90" rx="6" class="fill-neutral-900/1 dark:fill-white/1 stroke-neutral-900/5 dark:stroke-white/5" />
+                  <path d="M 25 155 Q 60 110 100 135 T 200 105 T 300 120 T 375 95" class="stroke-neutral-800/60 dark:stroke-white/40" stroke-width="2" stroke-linecap="round" />
+                  <!-- Gridlines inside chart -->
+                  <line x1="20" y1="110" x2="380" y2="110" class="stroke-neutral-200/50 dark:stroke-neutral-800/30" stroke-dasharray="2 4" />
+                  <line x1="20" y1="140" x2="380" y2="140" class="stroke-neutral-200/50 dark:stroke-neutral-800/30" stroke-dasharray="2 4" />
+                </svg>
+              )}
+
+              {project.title === "Astro Canvas Engine" && (
+                <svg viewBox="0 0 400 200" fill="none" class="w-full h-full p-8 pt-10 text-neutral-400 dark:text-neutral-600">
+                  <!-- Stylized Particle Web -->
+                  <circle cx="100" cy="80" r="6" class="fill-neutral-900 dark:fill-white" />
+                  <circle cx="200" cy="140" r="4" class="fill-neutral-900/30 dark:fill-white/30" />
+                  <circle cx="300" cy="70" r="5" class="fill-neutral-900/60 dark:fill-white/60" />
+                  <circle cx="150" cy="50" r="3" class="fill-neutral-900/20 dark:fill-white/20" />
+                  <circle cx="270" cy="130" r="6" class="fill-neutral-900/40 dark:fill-white/40" />
+                  <circle cx="50" cy="130" r="3" class="fill-neutral-900/20 dark:fill-white/20" />
+
+                  <line x1="100" y1="80" x2="200" y2="140" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  <line x1="100" y1="80" x2="150" y2="50" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  <line x1="200" y1="140" x2="270" y2="130" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  <line x1="300" y1="70" x2="270" y2="130" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  <line x1="300" y1="70" x2="150" y2="50" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  <line x1="50" y1="130" x2="100" y2="80" class="stroke-neutral-200 dark:stroke-neutral-800" stroke-width="1" />
+                  
+                  <rect x="280" y="20" width="100" height="24" rx="4" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-200 dark:stroke-neutral-800" />
+                  <text x="290" y="36" class="fill-neutral-500 dark:fill-neutral-400" font-family="monospace" font-size="10">engine: running</text>
+                </svg>
+              )}
+
+              {project.title === "MiniDB" && (
+                <svg viewBox="0 0 400 200" fill="none" class="w-full h-full p-8 pt-10 text-neutral-400 dark:text-neutral-600">
+                  <!-- Code Blocks / JSON schema representation -->
+                  <text x="30" y="45" class="fill-neutral-500 dark:fill-neutral-400" font-family="monospace" font-size="12">const db = new MiniDB("store");</text>
+                  <text x="30" y="65" class="fill-neutral-500 dark:fill-neutral-400" font-family="monospace" font-size="12">db.insert(&#123;</text>
+                  <text x="50" y="85" class="fill-neutral-900 dark:fill-white" font-family="monospace" font-size="12">id: "sakshi",</text>
+                  <text x="50" y="105" class="fill-neutral-700 dark:fill-neutral-300" font-family="monospace" font-size="12">role: "frontend",</text>
+                  <text x="50" y="125" class="fill-emerald-600 dark:fill-emerald-400" font-family="monospace" font-size="12">active: true</text>
+                  <text x="30" y="145" class="fill-neutral-500 dark:fill-neutral-400" font-family="monospace" font-size="12">&#125;);</text>
+
+                  <!-- Storage visual -->
+                  <rect x="260" y="60" width="110" height="90" rx="6" class="fill-neutral-900/3 dark:fill-white/3 stroke-neutral-200 dark:stroke-neutral-800" />
+                  <line x1="260" y1="90" x2="370" y2="90" class="stroke-neutral-200 dark:stroke-neutral-800" />
+                  <line x1="260" y1="120" x2="370" y2="120" class="stroke-neutral-200 dark:stroke-neutral-800" />
+                  <circle cx="280" cy="75" r="4" fill="#10b981" />
+                  <circle cx="280" cy="105" r="4" class="fill-neutral-900 dark:fill-white" />
+                  <circle cx="280" cy="135" r="4" class="fill-neutral-200 dark:fill-neutral-800" />
+                </svg>
+              )}
+            </div>
+
+            <!-- Project Details -->
+            <div class={`${isFeatured ? 'lg:col-span-6' : ''} flex flex-col justify-between gap-4`}>
+              
+              <!-- Header & Description -->
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-lg font-bold text-neutral-900 dark:text-white tracking-tight transition-colors">
+                    {project.title}
+                  </h3>
+                  {isFeatured && (
+                    <span class="rounded-full bg-neutral-100 dark:bg-white/10 px-2.5 py-0.5 text-[10px] font-mono font-medium text-neutral-800 dark:text-white">
+                      Featured
+                    </span>
+                  )}
+                </div>
+                <p class="text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans mt-1">
+                  {project.description}
+                </p>
+              </div>
+
+              <!-- Tech Stack & Links -->
+              <div class="flex flex-col gap-4">
+                <!-- Stack Tags -->
+                <div class="flex flex-wrap gap-1.5">
+                  {project.tech.map(tech => (
+                    <span class="px-2 py-0.5 rounded-md border border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950 text-[10px] font-mono text-neutral-500 dark:text-neutral-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Action Links -->
+                <div class="flex items-center gap-4 pt-2 border-t border-neutral-200 dark:border-neutral-900/60">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                    aria-label={`View code for ${project.title} on GitHub`}
+                  >
+                    <Icon name="github" size={13} />
+                    <span>Source Code</span>
+                  </a>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                      aria-label={`View live demo of ${project.title}`}
+                    >
+                      <Icon name="external-link" size={13} />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

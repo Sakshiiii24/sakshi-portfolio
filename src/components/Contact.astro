@@ -1,0 +1,156 @@
+---
+import { portfolioData } from '../data/portfolio';
+import Icon from './Icon.astro';
+---
+
+<section id="contact" class="w-full bg-white dark:bg-black py-24 px-6 border-b border-neutral-200 dark:border-neutral-900" aria-label="Contact">
+  <div class="mx-auto max-w-5xl">
+    
+    <!-- Section Title -->
+    <div class="flex flex-col gap-2 mb-16">
+      <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">08 / Connection</span>
+      <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Get In Touch</h2>
+    </div>
+
+    <!-- Contact Box layout -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+      <!-- Left Box: Narrative invitation -->
+      <div class="md:col-span-7 flex flex-col justify-between gap-6 p-8 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/40 dark:bg-neutral-950/40 relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg-dense opacity-10"></div>
+        <div class="relative z-10 flex flex-col gap-4">
+          <h3 class="text-xl font-bold text-neutral-900 dark:text-white tracking-tight">Let's collaborate on something great.</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans max-w-md">
+            Whether you want to discuss a new project, query engineering practices, or just say hello—my inbox is always open. I'll do my best to get back to you within 24 hours.
+          </p>
+        </div>
+        
+        <!-- Quick Email Label -->
+        <div class="relative z-10 flex flex-col gap-1 mt-6">
+          <span class="font-mono text-[10px] uppercase text-neutral-400 dark:text-neutral-500 tracking-wider">Direct Mail</span>
+          <a href={`mailto:${portfolioData.personal.email}`} class="text-sm font-semibold text-neutral-950 dark:text-white hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">
+            {portfolioData.personal.email}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Box: Tile Grid of Actions -->
+      <div class="md:col-span-5 flex flex-col gap-4">
+        
+        <!-- Email Connect card -->
+        <a 
+          href={`mailto:${portfolioData.personal.email}`}
+          class="flex items-center justify-between p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/20 dark:bg-neutral-950/20 hover:border-neutral-300 dark:hover:border-neutral-800 hover:bg-neutral-100/60 dark:hover:bg-neutral-950/60 transition-all duration-300 group"
+          aria-label="Send an email to Sakshi"
+        >
+          <div class="flex items-center gap-3">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+              <Icon name="mail" size={14} />
+            </div>
+            <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">Send Email</span>
+          </div>
+          <Icon name="external-link" size={12} class="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors" />
+        </a>
+
+        <!-- Copy Email to Clipboard Card (Interactive) -->
+        <button
+          id="copy-email-btn"
+          data-email={portfolioData.personal.email}
+          class="flex items-center justify-between p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/20 dark:bg-neutral-950/20 hover:border-neutral-300 dark:hover:border-neutral-800 hover:bg-neutral-100/60 dark:hover:bg-neutral-950/60 transition-all duration-300 group cursor-pointer w-full text-left"
+          aria-label="Copy email address to clipboard"
+        >
+          <div class="flex items-center gap-3">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+              <Icon name="copy" size={14} id="copy-icon" />
+              <Icon name="check" size={14} id="check-icon" class="hidden text-emerald-400" />
+            </div>
+            <span id="copy-text" class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">Copy Email</span>
+          </div>
+          <span id="copy-indicator" class="text-[10px] font-mono text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-400">Click to copy</span>
+        </button>
+
+        <!-- LinkedIn Card -->
+        <a 
+          href={portfolioData.personal.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/20 dark:bg-neutral-950/20 hover:border-neutral-300 dark:hover:border-neutral-800 hover:bg-neutral-100/60 dark:hover:bg-neutral-950/60 transition-all duration-300 group"
+          aria-label="Connect with Sakshi on LinkedIn"
+        >
+          <div class="flex items-center gap-3">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+              <Icon name="linkedin" size={14} />
+            </div>
+            <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">LinkedIn</span>
+          </div>
+          <Icon name="external-link" size={12} class="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors" />
+        </a>
+
+        <!-- GitHub Card -->
+        <a 
+          href={portfolioData.personal.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/20 dark:bg-neutral-950/20 hover:border-neutral-300 dark:hover:border-neutral-800 hover:bg-neutral-100/60 dark:hover:bg-neutral-950/60 transition-all duration-300 group"
+          aria-label="View Sakshi's projects on GitHub"
+        >
+          <div class="flex items-center gap-3">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+              <Icon name="github" size={14} />
+            </div>
+            <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">GitHub Profile</span>
+          </div>
+          <Icon name="external-link" size={12} class="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors" />
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initCopyEmail = () => {
+    const copyBtn = document.getElementById('copy-email-btn');
+    const copyText = document.getElementById('copy-text');
+    const copyIcon = document.getElementById('copy-icon');
+    const checkIcon = document.getElementById('check-icon');
+    const copyIndicator = document.getElementById('copy-indicator');
+    
+    if (!copyBtn) return;
+    
+    const email = copyBtn.getAttribute('data-email') || '';
+    let isCopying = false;
+
+    copyBtn.addEventListener('click', async () => {
+      if (isCopying) return;
+      isCopying = true;
+      
+      try {
+        await navigator.clipboard.writeText(email);
+        
+        // Visual state change
+        if (copyText) copyText.textContent = "Copied!";
+        if (copyIndicator) copyIndicator.textContent = "Copied to clipboard";
+        copyIcon?.classList.add('hidden');
+        checkIcon?.classList.remove('hidden');
+        
+        // Reset state after delay
+        setTimeout(() => {
+          if (copyText) copyText.textContent = "Copy Email";
+          if (copyIndicator) copyIndicator.textContent = "Click to copy";
+          copyIcon?.classList.remove('hidden');
+          checkIcon?.classList.add('hidden');
+          isCopying = false;
+        }, 2000);
+        
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+        if (copyIndicator) copyIndicator.textContent = "Failed to copy";
+        isCopying = false;
+      }
+    });
+  };
+
+  // Run on initial load and view transitions swap
+  initCopyEmail();
+  document.addEventListener('astro:after-swap', initCopyEmail);
+</script>

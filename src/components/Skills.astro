@@ -1,0 +1,51 @@
+---
+import { portfolioData } from '../data/portfolio';
+import Icon from './Icon.astro';
+
+// Map categories to specific icons
+const getCategoryIcon = (title: string): string => {
+  const normalized = title.toLowerCase();
+  if (normalized.includes("programming") || normalized.includes("languages")) return "terminal";
+  if (normalized.includes("frontend") || normalized.includes("frameworks")) return "code";
+  if (normalized.includes("styling") || normalized.includes("ui")) return "cpu";
+  if (normalized.includes("backend") || normalized.includes("database")) return "database";
+  if (normalized.includes("cloud") || normalized.includes("deployment")) return "cloud";
+  if (normalized.includes("tools") || normalized.includes("version") || normalized.includes("git")) return "git-branch";
+  return "tool";
+};
+---
+
+<section id="skills" class="w-full bg-white dark:bg-black py-24 px-6 border-b border-neutral-200 dark:border-neutral-900" aria-label="Skills">
+  <div class="mx-auto max-w-5xl">
+    
+    <!-- Section Title -->
+    <div class="flex flex-col gap-2 mb-16">
+      <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">02 / Expertise</span>
+      <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Skills & Technologies</h2>
+    </div>
+
+    <!-- Skills Category Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {portfolioData.skills.map(category => (
+        <div class="spotlight-card p-6 flex flex-col gap-6">
+          <!-- Category Header -->
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
+              <Icon name={getCategoryIcon(category.title)} size={16} />
+            </div>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white tracking-tight">{category.title}</h3>
+          </div>
+
+          <!-- Skills Badges Grid -->
+          <div class="flex flex-wrap gap-2">
+            {category.skills.map(skill => (
+              <span class="inline-flex items-center px-2.5 py-1.5 rounded-md border border-neutral-200 dark:border-neutral-900 bg-neutral-50/40 dark:bg-neutral-950/40 text-xs font-mono text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-300 dark:hover:border-neutral-800 transition-colors duration-200">
+                {skill.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

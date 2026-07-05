@@ -1,0 +1,70 @@
+---
+import { portfolioData } from '../data/portfolio';
+import Icon from './Icon.astro';
+---
+
+<section id="about" class="w-full bg-white dark:bg-black py-24 px-6 border-b border-neutral-200 dark:border-neutral-900" aria-label="About Me">
+  <div class="mx-auto max-w-5xl">
+    
+    <!-- Section Title -->
+    <div class="flex flex-col gap-2 mb-16">
+      <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">01 / About Me</span>
+      <h2 class="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Background & Philosophy</h2>
+    </div>
+
+    <!-- Layout Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Biography & Interests -->
+      <div class="md:col-span-7 flex flex-col gap-6">
+        <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans text-sm md:text-base">
+          {portfolioData.personal.about.bio}
+        </p>
+
+        <!-- Interests list -->
+        <div class="flex flex-col gap-3 mt-4">
+          <h3 class="text-xs font-mono uppercase text-neutral-500 dark:text-neutral-400 tracking-wider">Interests & Specialties</h3>
+          <div class="flex flex-wrap gap-2">
+            {portfolioData.personal.about.interests.map(interest => (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 px-3 py-1 text-xs text-neutral-600 dark:text-neutral-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-600"></span>
+                <span>{interest}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Accent cards (Passion & Goals) -->
+      <div class="md:col-span-5 flex flex-col gap-6">
+        
+        <!-- Passion Card -->
+        <div class="spotlight-card p-6 flex flex-col gap-3">
+          <div class="flex items-center gap-3 text-neutral-900 dark:text-white">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
+              <Icon name="code" size={14} />
+            </div>
+            <h4 class="text-sm font-semibold tracking-tight">Core Passion</h4>
+          </div>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+            {portfolioData.personal.about.passion}
+          </p>
+        </div>
+
+        <!-- Goals Card -->
+        <div class="spotlight-card p-6 flex flex-col gap-3">
+          <div class="flex items-center gap-3 text-neutral-900 dark:text-white">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
+              <Icon name="award" size={14} />
+            </div>
+            <h4 class="text-sm font-semibold tracking-tight">Future Goals</h4>
+          </div>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+            {portfolioData.personal.about.goals}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
