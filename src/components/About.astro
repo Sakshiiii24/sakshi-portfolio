@@ -66,5 +66,24 @@ import Icon from './Icon.astro';
 
       </div>
     </div>
+
+    <!-- Play with me CTA -->
+    <div class="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
+          <Icon name="terminal" size={16} />
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <h4 class="text-sm font-semibold tracking-tight text-neutral-900 dark:text-white">Want to see my code in action?</h4>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 font-sans font-medium">Play a game of Chess or Snakes & Ladders built with Vanilla JS.</p>
+        </div>
+      </div>
+      <a 
+        href="/play" 
+        class="inline-flex h-9 items-center justify-center rounded-lg bg-neutral-950 text-white dark:bg-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all px-4 text-xs font-semibold shrink-0 cursor-pointer"
+      >
+        Play With Me
+      </a>
+    </div>
   </div>
 </section>

@@ -1,0 +1,1369 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Interactive Play Zone | Sakshi Srivastava" 
+  description="Play Chess or Snake & Ladder against the CPU or locally with a friend. Enjoy custom responsive themes matching the developer portfolio style."
+>
+  <main class="flex-grow bg-white dark:bg-black py-16 px-4 md:px-6 relative overflow-hidden">
+    <!-- Grid Background -->
+    <div class="absolute inset-0 grid-bg opacity-15 pointer-events-none"></div>
+
+    <div class="relative z-10 mx-auto max-w-5xl">
+      <!-- Back Button & Header -->
+      <div class="flex flex-col gap-6 mb-12">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors group"
+        >
+          <span>&larr; Back to Portfolio</span>
+        </a>
+        <div class="flex flex-col gap-2">
+          <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Interactive Zone</span>
+          <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight">Play with me</h1>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans max-w-xl">
+            Choose a game, customize the style, and test your wits against the CPU or a local opponent.
+          </p>
+        </div>
+      </div>
+
+      <!-- Game Tabs Navigation -->
+      <div class="flex border-b border-neutral-200 dark:border-neutral-900 mb-8 overflow-x-auto gap-4">
+        <button
+          id="tab-chess"
+          class="tab-btn pb-4 text-sm font-semibold tracking-wide border-b-2 border-neutral-900 dark:border-white text-neutral-900 dark:text-white transition-all cursor-pointer whitespace-nowrap"
+        >
+          Chess Engine
+        </button>
+        <button
+          id="tab-snakes"
+          class="tab-btn pb-4 text-sm font-medium tracking-wide border-b-2 border-transparent text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-all cursor-pointer whitespace-nowrap"
+        >
+          Snakes & Ladders
+        </button>
+      </div>
+
+      <!-- GAME 1: CHESS ZONE -->
+      <section id="chess-zone" class="game-section block">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+          <!-- Chess Board Container -->
+          <div class="w-full lg:w-[58%] shrink-0 flex flex-col items-center gap-4">
+            <div 
+              id="chess-board-wrapper" 
+              class="w-full max-w-[480px] aspect-square rounded-xl p-1 bg-neutral-150 dark:bg-neutral-900 shadow-xl border border-neutral-200 dark:border-neutral-800 transition-all duration-300"
+            >
+              <div 
+                id="chess-board" 
+                class="grid w-full h-full rounded-lg overflow-hidden relative cursor-default"
+                style="grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr);"
+                role="grid"
+                aria-label="Chess Board"
+              >
+                <!-- Generated dynamically via Javascript -->
+              </div>
+            </div>
+
+            <!-- Game Status / Turn message -->
+            <div id="chess-status" class="w-full max-w-[480px] px-4 py-3 rounded-lg bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 flex items-center justify-between text-xs font-mono">
+              <div class="flex items-center gap-2">
+                <span id="chess-turn-indicator" class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="chess-status-text" class="text-neutral-700 dark:text-neutral-300">White's Turn</span>
+              </div>
+              <span id="chess-mode-indicator" class="text-neutral-400 dark:text-neutral-500">VS CPU</span>
+            </div>
+          </div>
+
+          <!-- Chess Side Controls -->
+          <div class="w-full lg:w-[42%] flex flex-col gap-6">
+            <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/50 dark:bg-neutral-950/20 backdrop-blur-sm">
+              <h2 class="text-lg font-bold text-neutral-900 dark:text-white mb-4">Chess Settings</h2>
+              
+              <div class="flex flex-col gap-5">
+                <!-- Mode select -->
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">Game Mode</label>
+                  <div class="flex gap-2 w-full">
+                    <button id="chess-btn-vs-cpu" class="flex-1 h-9 rounded-md bg-neutral-950 text-white dark:bg-white dark:text-black text-xs font-medium transition-all shadow-sm border border-transparent">
+                      vs Computer
+                    </button>
+                    <button id="chess-btn-vs-local" class="flex-1 h-9 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 text-xs font-medium transition-all">
+                      Local 2-Player
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Theme Selection -->
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">Board Theme</label>
+                  <div class="flex flex-wrap gap-2 w-full">
+                    <button data-chess-theme="slate" class="chess-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-900 dark:border-white text-neutral-900 dark:text-white font-medium text-xs transition-all bg-white dark:bg-black">
+                      Slate
+                    </button>
+                    <button data-chess-theme="emerald" class="chess-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-200 dark:border-neutral-850 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition-all bg-emerald-600/10">
+                      Forest
+                    </button>
+                    <button data-chess-theme="neon" class="chess-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-200 dark:border-neutral-850 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition-all bg-indigo-900/10">
+                      Neon
+                    </button>
+                    <button data-chess-theme="wood" class="chess-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-200 dark:border-neutral-850 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition-all bg-amber-600/10">
+                      Wood
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Reset Board -->
+                <button id="chess-reset" class="flex w-full items-center justify-center gap-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 py-2.5 text-xs font-semibold text-neutral-700 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-855 transition-colors mt-2 cursor-pointer">
+                  Reset Game
+                </button>
+              </div>
+            </div>
+
+            <!-- Game Log & Instructions -->
+            <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/50 dark:bg-neutral-950/20 backdrop-blur-sm text-xs flex flex-col gap-3 font-sans text-neutral-600 dark:text-neutral-400">
+              <h3 class="font-bold text-neutral-900 dark:text-white">How to Play</h3>
+              <ul class="list-disc list-inside space-y-1.5">
+                <li>Click on a piece to highlight all legal moves.</li>
+                <li>Click on an active highlighted cell to move the piece.</li>
+                <li>In **vs Computer** mode, the AI plays black and thinks automatically.</li>
+                <li>Your king will flash red if you are in check.</li>
+              </ul>
+              <div class="mt-2 pt-3 border-t border-neutral-200 dark:border-neutral-900/60">
+                <span class="font-bold text-neutral-900 dark:text-white block mb-2 font-mono uppercase tracking-wider text-[10px]">Game Log</span>
+                <div id="chess-log" class="h-28 overflow-y-auto font-mono text-[10px] space-y-1 text-neutral-500 dark:text-neutral-400 pr-2">
+                  <div>Game started. Play your move!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAME 2: SNAKES & LADDERS ZONE -->
+      <section id="snakes-zone" class="game-section hidden">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+          <!-- Snakes Board Container -->
+          <div class="w-full lg:w-[58%] shrink-0 flex flex-col items-center gap-4">
+            <div 
+              id="snakes-board-wrapper" 
+              class="w-full max-w-[480px] aspect-square rounded-xl p-1 bg-neutral-150 dark:bg-neutral-900 shadow-xl border border-neutral-200 dark:border-neutral-800 transition-all duration-300 relative"
+            >
+              <!-- Winding Grid numbers 100 to 1 -->
+              <div 
+                id="snakes-board" 
+                class="grid w-full h-full rounded-lg overflow-hidden relative"
+                style="grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(10, 1fr);"
+                role="grid"
+                aria-label="Snakes and Ladders Board"
+              >
+                <!-- Generated dynamically via Javascript -->
+              </div>
+
+              <!-- SVG Overlay for Snakes and Ladders Paths -->
+              <svg 
+                id="snakes-svg-overlay" 
+                class="absolute inset-1 pointer-events-none w-[calc(100%-8px)] h-[calc(100%-8px)] z-20"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="ladder-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#d97706" stop-opacity="0.8"/>
+                  </linearGradient>
+                  <linearGradient id="snake-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ef4444" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#991b1b" stop-opacity="0.85"/>
+                  </linearGradient>
+                  <linearGradient id="ladder-cyber" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.9"/>
+                  </linearGradient>
+                  <linearGradient id="snake-cyber" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ec4899" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#a21caf" stop-opacity="0.9"/>
+                  </linearGradient>
+                </defs>
+                <g id="snakes-paths-group"></g>
+              </svg>
+
+              <!-- Animated Player Tokens -->
+              <div id="snakes-token-p1" class="absolute w-[6%] h-[6%] rounded-full z-30 transition-all duration-300 flex items-center justify-center pointer-events-none shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="left: -100px; top: -100px;">
+                <div class="w-4/5 h-4/5 rounded-full border-2 border-white bg-blue-500"></div>
+              </div>
+              <div id="snakes-token-p2" class="absolute w-[6%] h-[6%] rounded-full z-30 transition-all duration-300 flex items-center justify-center pointer-events-none shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="left: -100px; top: -100px;">
+                <div class="w-4/5 h-4/5 rounded-full border-2 border-white bg-purple-500"></div>
+              </div>
+            </div>
+
+            <!-- Snakes Info panel -->
+            <div id="snakes-status" class="w-full max-w-[480px] px-4 py-3 rounded-lg bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 flex items-center justify-between text-xs font-mono">
+              <div class="flex items-center gap-2">
+                <span id="snakes-turn-indicator" class="h-2 w-2 rounded-full bg-blue-500"></span>
+                <span id="snakes-status-text" class="text-neutral-700 dark:text-neutral-300">Your Turn (Blue)</span>
+              </div>
+              <span id="snakes-mode-indicator" class="text-neutral-400 dark:text-neutral-500">VS CPU</span>
+            </div>
+          </div>
+
+          <!-- Snakes Side Controls -->
+          <div class="w-full lg:w-[42%] flex flex-col gap-6">
+            <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/50 dark:bg-neutral-950/20 backdrop-blur-sm">
+              <h2 class="text-lg font-bold text-neutral-900 dark:text-white mb-4">Snakes Settings</h2>
+              
+              <div class="flex flex-col gap-5">
+                <!-- Mode select -->
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">Game Mode</label>
+                  <div class="flex gap-2 w-full">
+                    <button id="snakes-btn-vs-cpu" class="flex-1 h-9 rounded-md bg-neutral-950 text-white dark:bg-white dark:text-black text-xs font-medium transition-all shadow-sm border border-transparent">
+                      vs Computer
+                    </button>
+                    <button id="snakes-btn-vs-local" class="flex-1 h-9 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 text-xs font-medium transition-all">
+                      Local 2-Player
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Theme Selection -->
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">Board Theme</label>
+                  <div class="flex flex-wrap gap-2 w-full">
+                    <button data-snakes-theme="slate" class="snakes-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-900 dark:border-white text-neutral-900 dark:text-white font-medium text-xs transition-all bg-white dark:bg-black">
+                      Slate
+                    </button>
+                    <button data-snakes-theme="cyber" class="snakes-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-200 dark:border-neutral-850 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition-all bg-cyan-900/10">
+                      Cyber
+                    </button>
+                    <button data-snakes-theme="retro" class="snakes-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-200 dark:border-neutral-850 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition-all bg-amber-600/10">
+                      Retro
+                    </button>
+                    <button data-snakes-theme="candy" class="snakes-theme-btn flex-1 min-w-[70px] h-9 rounded-md border border-neutral-200 dark:border-neutral-850 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition-all bg-pink-900/10">
+                      Candy
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Dice Rolling Section -->
+                <div class="flex flex-col items-center gap-4 py-4 border-t border-b border-neutral-200 dark:border-neutral-900">
+                  <div class="flex items-center gap-6">
+                    <!-- Dice Visual -->
+                    <div 
+                      id="dice-visual" 
+                      class="w-14 h-14 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-250 dark:border-neutral-700 shadow-md flex items-center justify-center text-2xl font-bold text-neutral-900 dark:text-white transition-all cursor-pointer hover:scale-105 active:scale-95 duration-200"
+                    >
+                      ⚀
+                    </div>
+                    <div class="flex flex-col">
+                      <span id="dice-roll-text" class="text-xs text-neutral-400 dark:text-neutral-500 font-mono">Roll the Dice!</span>
+                      <span id="dice-result-val" class="text-lg font-bold text-neutral-900 dark:text-white">-</span>
+                    </div>
+                  </div>
+                  <button id="snakes-roll-btn" class="w-full h-10 rounded-md bg-neutral-950 text-white dark:bg-white dark:text-black font-semibold text-xs transition-colors hover:bg-neutral-800 dark:hover:bg-neutral-200 cursor-pointer">
+                    Roll Dice
+                  </button>
+                </div>
+
+                <!-- Reset Board -->
+                <button id="snakes-reset" class="flex w-full items-center justify-center gap-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 py-2 text-xs font-semibold text-neutral-700 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-855 transition-colors cursor-pointer">
+                  Reset Game
+                </button>
+              </div>
+            </div>
+
+            <!-- Game Log & Instructions -->
+            <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-neutral-50/50 dark:bg-neutral-950/20 backdrop-blur-sm text-xs flex flex-col gap-3 font-sans text-neutral-600 dark:text-neutral-400">
+              <h3 class="font-bold text-neutral-900 dark:text-white">How to Play</h3>
+              <ul class="list-disc list-inside space-y-1.5">
+                <li>Roll the dice. Your token (Blue) moves step-by-step.</li>
+                <li>Landing at the bottom of a **ladder** climbs it automatically.</li>
+                <li>Landing on a **snake's head** slides you down to its tail.</li>
+                <li>The first player to reach cell **100** wins!</li>
+              </ul>
+              <div class="mt-2 pt-3 border-t border-neutral-200 dark:border-neutral-900/60">
+                <span class="font-bold text-neutral-900 dark:text-white block mb-2 font-mono uppercase tracking-wider text-[10px]">Game Log</span>
+                <div id="snakes-log" class="h-28 overflow-y-auto font-mono text-[10px] space-y-1 text-neutral-500 dark:text-neutral-400 pr-2">
+                  <div>Game started. Roll dice!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</Layout>
+
+<style is:global>
+  /* Spot highlighting animations for active turns and selection indicators */
+  @keyframes chess-check {
+    0%, 100% { background-color: rgba(239, 68, 68, 0.4); }
+    50% { background-color: rgba(239, 68, 68, 0.8); }
+  }
+  .king-in-check {
+    animation: chess-check 1.5s infinite;
+  }
+  
+  /* Dice roll animations */
+  @keyframes dice-roll-spin {
+    0% { transform: rotate(0deg) scale(0.9); }
+    30% { transform: rotate(180deg) scale(1.1); }
+    70% { transform: rotate(360deg) scale(1.1); }
+    100% { transform: rotate(720deg) scale(1); }
+  }
+  .dice-rolling {
+    animation: dice-roll-spin 0.6s ease-in-out;
+  }
+</style>
+
+<script>
+  // ----------------------------------------------------
+  // TABS NAVIGATION CONTROLLER
+  // ----------------------------------------------------
+  const tabChess = document.getElementById('tab-chess');
+  const tabSnakes = document.getElementById('tab-snakes');
+  const chessSection = document.getElementById('chess-zone');
+  const snakesSection = document.getElementById('snakes-zone');
+
+  const switchTab = (active: 'chess' | 'snakes') => {
+    if (active === 'chess') {
+      tabChess?.classList.add('border-b-2', 'border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+      tabChess?.classList.remove('border-transparent', 'text-neutral-400', 'dark:text-neutral-500');
+      
+      tabSnakes?.classList.remove('border-b-2', 'border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+      tabSnakes?.classList.add('border-transparent', 'text-neutral-400', 'dark:text-neutral-500');
+      
+      chessSection?.classList.remove('hidden');
+      chessSection?.classList.add('block');
+      snakesSection?.classList.add('hidden');
+      snakesSection?.classList.remove('block');
+    } else {
+      tabSnakes?.classList.add('border-b-2', 'border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+      tabSnakes?.classList.remove('border-transparent', 'text-neutral-400', 'dark:text-neutral-500');
+      
+      tabChess?.classList.remove('border-b-2', 'border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+      tabChess?.classList.add('border-transparent', 'text-neutral-400', 'dark:text-neutral-500');
+      
+      snakesSection?.classList.remove('hidden');
+      snakesSection?.classList.add('block');
+      chessSection?.classList.add('hidden');
+      chessSection?.classList.remove('block');
+      
+      // Initialize SVG paths for Snake & Ladder if not yet loaded
+      initSnakesOverlay();
+    }
+  };
+
+  tabChess?.addEventListener('click', () => switchTab('chess'));
+  tabSnakes?.addEventListener('click', () => switchTab('snakes'));
+
+  // Read URL query parameters to load active game
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedGame = urlParams.get('game');
+  if (requestedGame === 'snakes') {
+    switchTab('snakes');
+  } else {
+    switchTab('chess');
+  }
+
+  // ----------------------------------------------------
+  // CHESS GAME STATE & CONTROLLERS
+  // ----------------------------------------------------
+  type PieceColor = 'w' | 'b';
+  type PieceType = 'p' | 'r' | 'n' | 'b' | 'q' | 'k';
+  type BoardState = string[][];
+  type Coord = [number, number];
+
+  const initialChessBoard: BoardState = [
+    ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
+    ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
+    ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr']
+  ];
+
+  const svgPieces: Record<string, string> = {
+    'wp': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><circle cx="12" cy="8" r="3.5" fill="currentColor"/><path d="M8 15c0 -2.5 1.5 -4.5 4 -4.5s4 2 4 4.5z" fill="currentColor"/><path d="M6 18h12" stroke-linecap="round"/></svg>`,
+    'wr': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M6 18h12v-3.5h-1v-6h1V5h-2.5v2h-1.5V5h-2v2h-1.5V5H6zm3-3.5h6v-6H9z" fill="currentColor"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'wn': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M18 17c0 -3 -2 -5 -4 -6c-0.8 -0.4 -1.5 -1 -2.2 -2.5c0 -0.8 0.8 -1.5 0.8 -2.2s-1.5 -0.8 -2.2 0.8c-0.8 1.5 -1.5 2.2 -3 3c-0.8 0.4 -0.8 1.5 -0.8 2.2v4h11.4z" fill="currentColor"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'wb': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M12 4c-2.5 0 -4 2.5 -4 6s1.5 5 4 7c2.5 -2 4 -3.5 4 -7s-1.5 -6 -4 -6z" fill="currentColor"/><circle cx="12" cy="2.2" r="0.8" fill="currentColor"/><path d="M8 10h8M12 7v6" stroke-linecap="round"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'wq': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M5 17l-1.5 -7l3.5 2.2l5 -4l5 4l3.5 -2.2l-1.5 7z" fill="currentColor"/><circle cx="12" cy="4.5" r="0.8" fill="currentColor"/><circle cx="3.5" cy="9" r="0.6" fill="currentColor"/><circle cx="20.5" cy="9" r="0.6" fill="currentColor"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'wk': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M5 17l-1 -6.5l4 2.2l4 -4l4 4l4 -2.2l-1 6.5z" fill="currentColor"/><path d="M12 2.2v3.3M10.2 3.8h3.6" stroke-linecap="round"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'bp': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><circle cx="12" cy="8" r="3.5" fill="currentColor"/><path d="M8 15c0 -2.5 1.5 -4.5 4 -4.5s4 2 4 4.5z" fill="currentColor"/><path d="M6 18h12" stroke-linecap="round"/></svg>`,
+    'br': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M6 18h12v-3.5h-1v-6h1V5h-2.5v2h-1.5V5h-2v2h-1.5V5H6zm3-3.5h6v-6H9z" fill="currentColor"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'bn': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M18 17c0 -3 -2 -5 -4 -6c-0.8 -0.4 -1.5 -1 -2.2 -2.5c0 -0.8 0.8 -1.5 0.8 -2.2s-1.5 -0.8 -2.2 0.8c-0.8 1.5 -1.5 2.2 -3 3c-0.8 0.4 -0.8 1.5 -0.8 2.2v4h11.4z" fill="currentColor"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'bb': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M12 4c-2.5 0 -4 2.5 -4 6s1.5 5 4 7c2.5 -2 4 -3.5 4 -7s-1.5 -6 -4 -6z" fill="currentColor"/><circle cx="12" cy="2.2" r="0.8" fill="currentColor"/><path d="M8 10h8M12 7v6" stroke-linecap="round"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'bq': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M5 17l-1.5 -7l3.5 2.2l5 -4l5 4l3.5 -2.2l-1.5 7z" fill="currentColor"/><circle cx="12" cy="4.5" r="0.8" fill="currentColor"/><circle cx="3.5" cy="9" r="0.6" fill="currentColor"/><circle cx="20.5" cy="9" r="0.6" fill="currentColor"/><path d="M5 18h14" stroke-linecap="round"/></svg>`,
+    'bk': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-8 h-8"><path d="M5 17l-1 -6.5l4 2.2l4 -4l4 4l4 -2.2l-1 6.5z" fill="currentColor"/><path d="M12 2.2v3.3M10.2 3.8h3.6" stroke-linecap="round"/><path d="M5 18h14" stroke-linecap="round"/></svg>`
+  };
+
+  let chessBoard = chessBoardCopy(initialChessBoard);
+  let chessTurn: PieceColor = 'w';
+  let chessSelectedPiece: Coord | null = null;
+  let chessValidMoves: Coord[] = [];
+  let chessMode: 'cpu' | 'local' = 'cpu';
+  let chessTheme = 'slate';
+  let chessGameStatus: 'playing' | 'checkmate' | 'stalemate' = 'playing';
+
+  function chessBoardCopy(board: BoardState): BoardState {
+    return board.map(row => [...row]);
+  }
+
+  // Game Log Helper
+  function logChess(msg: string) {
+    const log = document.getElementById('chess-log');
+    if (log) {
+      const entry = document.createElement('div');
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+
+  // Find King Position
+  function findKingPos(color: PieceColor, board: BoardState): Coord | null {
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        if (board[r][c] === color + 'k') return [r, c];
+      }
+    }
+    return null;
+  }
+
+  // Move Validation
+  function getRawMoves(r: number, c: number, board: BoardState): Coord[] {
+    const piece = board[r][c];
+    if (!piece) return [];
+    const color = piece[0] as PieceColor;
+    const type = piece[1] as PieceType;
+    const moves: Coord[] = [];
+
+    const addMove = (tr: number, tc: number, captureOnly = false, moveOnly = false) => {
+      if (tr < 0 || tr > 7 || tc < 0 || tc > 7) return false;
+      const dest = board[tr][tc];
+      if (dest) {
+        if (moveOnly) return false;
+        if (dest[0] !== color) {
+          moves.push([tr, tc]);
+        }
+        return false; // Path blocked after meeting a piece
+      } else {
+        if (captureOnly) return false;
+        moves.push([tr, tc]);
+        return true; // Keep sliding
+      }
+    };
+
+    if (type === 'p') {
+      const dir = color === 'w' ? -1 : 1;
+      const startRow = color === 'w' ? 6 : 1;
+      // Single step forward
+      if (r + dir >= 0 && r + dir <= 7 && !board[r + dir][c]) {
+        addMove(r + dir, c, false, true);
+        // Double step
+        if (r === startRow && !board[r + dir * 2][c]) {
+          addMove(r + dir * 2, c, false, true);
+        }
+      }
+      // Diagonal captures
+      addMove(r + dir, c - 1, true, false);
+      addMove(r + dir, c + 1, true, false);
+    } else if (type === 'r') {
+      const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+      for (const [dr, dc] of dirs) {
+        let step = 1;
+        while (true) {
+          const tr = r + dr * step;
+          const tc = c + dc * step;
+          if (tr < 0 || tr > 7 || tc < 0 || tc > 7) break;
+          if (board[tr][tc]) {
+            if (board[tr][tc][0] !== color) moves.push([tr, tc]);
+            break;
+          }
+          moves.push([tr, tc]);
+          step++;
+        }
+      }
+    } else if (type === 'b') {
+      const dirs = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+      for (const [dr, dc] of dirs) {
+        let step = 1;
+        while (true) {
+          const tr = r + dr * step;
+          const tc = c + dc * step;
+          if (tr < 0 || tr > 7 || tc < 0 || tc > 7) break;
+          if (board[tr][tc]) {
+            if (board[tr][tc][0] !== color) moves.push([tr, tc]);
+            break;
+          }
+          moves.push([tr, tc]);
+          step++;
+        }
+      }
+    } else if (type === 'q') {
+      const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0], [-1, -1], [-1, 1], [1, -1], [1, 1]];
+      for (const [dr, dc] of dirs) {
+        let step = 1;
+        while (true) {
+          const tr = r + dr * step;
+          const tc = c + dc * step;
+          if (tr < 0 || tr > 7 || tc < 0 || tc > 7) break;
+          if (board[tr][tc]) {
+            if (board[tr][tc][0] !== color) moves.push([tr, tc]);
+            break;
+          }
+          moves.push([tr, tc]);
+          step++;
+        }
+      }
+    } else if (type === 'n') {
+      const jumps = [
+        [-2, -1], [-2, 1], [-1, -2], [-1, 2],
+        [1, -2], [1, 2], [2, -1], [2, 1]
+      ];
+      for (const [dr, dc] of jumps) {
+        addMove(r + dr, c + dc);
+      }
+    } else if (type === 'k') {
+      const steps = [
+        [-1, -1], [-1, 0], [-1, 1],
+        [0, -1],           [0, 1],
+        [1, -1],  [1, 0],  [1, 1]
+      ];
+      for (const [dr, dc] of steps) {
+        addMove(r + dr, c + dc);
+      }
+    }
+    return moves;
+  }
+
+  function isSquareAttacked(tr: number, tc: number, attackerColor: PieceColor, board: BoardState): boolean {
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        const piece = board[r][c];
+        if (piece && piece[0] === attackerColor) {
+          if (piece[1] === 'p') {
+            const dir = attackerColor === 'w' ? -1 : 1;
+            if (r + dir === tr && (c - 1 === tc || c + 1 === tc)) return true;
+          } else {
+            const moves = getRawMoves(r, c, board);
+            if (moves.some(([mr, mc]) => mr === tr && mc === tc)) return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  function isKingInCheck(color: PieceColor, board: BoardState): boolean {
+    const king = findKingPos(color, board);
+    if (!king) return false;
+    const opp = color === 'w' ? 'b' : 'w';
+    return isSquareAttacked(king[0], king[1], opp, board);
+  }
+
+  function getLegalMoves(r: number, c: number, board: BoardState): Coord[] {
+    const raw = getRawMoves(r, c, board);
+    const color = board[r][c][0] as PieceColor;
+    return raw.filter(([tr, tc]) => {
+      const temp = chessBoardCopy(board);
+      temp[tr][tc] = temp[r][c];
+      temp[r][c] = '';
+      return !isKingInCheck(color, temp);
+    });
+  }
+
+  function getAllLegalMoves(color: PieceColor, board: BoardState): { from: Coord; to: Coord[] }[] {
+    const all: { from: Coord; to: Coord[] }[] = [];
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        const piece = board[r][c];
+        if (piece && piece[0] === color) {
+          const legal = getLegalMoves(r, c, board);
+          if (legal.length > 0) {
+            all.push({ from: [r, c], to: legal });
+          }
+        }
+      }
+    }
+    return all;
+  }
+
+  // Draw Board Graphic Representation
+  function renderChess() {
+    const boardEl = document.getElementById('chess-board');
+    if (!boardEl) return;
+    boardEl.innerHTML = '';
+
+    const kingCheckColor = isKingInCheck(chessTurn, chessBoard) ? chessTurn : null;
+
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'w-full h-full flex items-center justify-center text-3xl font-semibold select-none relative transition-colors duration-250 cursor-pointer';
+        cell.dataset.r = r.toString();
+        cell.dataset.c = c.toString();
+
+        // 1. Grid Square theme base coloring
+        const isDarkSquare = (r + c) % 2 === 1;
+        if (chessTheme === 'emerald') {
+          cell.classList.add(isDarkSquare ? 'bg-[#769656]' : 'bg-[#eeeed2]');
+        } else if (chessTheme === 'neon') {
+          cell.classList.add(isDarkSquare ? 'bg-indigo-950/70' : 'bg-slate-900/40');
+          cell.classList.add('border', 'border-cyan-500/10');
+        } else if (chessTheme === 'wood') {
+          cell.classList.add(isDarkSquare ? 'bg-[#b58863]' : 'bg-[#f0d9b5]');
+        } else {
+          // Default Slate/Developer
+          cell.classList.add(isDarkSquare ? 'bg-neutral-200/90' : 'bg-neutral-50/90');
+          cell.classList.add('dark:' + (isDarkSquare ? 'bg-neutral-900/60' : 'bg-neutral-950/40'));
+        }
+
+        // 2. Highlighting
+        // Active Selection
+        if (chessSelectedPiece && chessSelectedPiece[0] === r && chessSelectedPiece[1] === c) {
+          cell.classList.add('ring-2', 'ring-neutral-950/40', 'dark:ring-white/40', 'bg-neutral-400/20');
+        }
+        // Valid Move highlight
+        const isValidDest = chessValidMoves.some(([vr, vc]) => vr === r && vc === c);
+        if (isValidDest) {
+          // Dot in middle
+          const dot = document.createElement('div');
+          dot.className = 'absolute w-3.5 h-3.5 rounded-full bg-emerald-500/65 z-10 pointer-events-none';
+          cell.appendChild(dot);
+        }
+
+        // King In Check Highlight
+        const piece = chessBoard[r][c];
+        if (piece && piece[1] === 'k' && piece[0] === kingCheckColor) {
+          cell.classList.add('king-in-check');
+        }
+
+        // 3. Piece glyphs
+        if (piece) {
+          const span = document.createElement('span');
+          span.innerHTML = svgPieces[piece] || '';
+          span.className = 'z-10 w-9 h-9 flex items-center justify-center transition-all';
+          
+          const pieceColor = piece[0];
+          // Style piece colors
+          if (pieceColor === 'w') {
+            if (chessTheme === 'neon') {
+              span.classList.add('text-cyan-400', 'drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]');
+            } else if (chessTheme === 'wood') {
+              span.classList.add('text-[#f8fafc]', 'stroke-neutral-800', 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]');
+            } else {
+              span.classList.add('text-neutral-800', 'dark:text-neutral-100');
+            }
+          } else {
+            // Black Piece
+            if (chessTheme === 'neon') {
+              span.classList.add('text-fuchsia-400', 'drop-shadow-[0_0_8px_rgba(232,121,249,0.7)]');
+            } else if (chessTheme === 'wood') {
+              span.classList.add('text-[#451a03]', 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]');
+            } else {
+              span.classList.add('text-neutral-400', 'dark:text-neutral-500');
+            }
+          }
+          cell.appendChild(span);
+        }
+
+        // Handle square clicks
+        cell.addEventListener('click', () => handleChessClick(r, c));
+        boardEl.appendChild(cell);
+      }
+    }
+
+    // Update Indicators
+    const turnText = document.getElementById('chess-status-text');
+    const indicator = document.getElementById('chess-turn-indicator');
+    
+    if (turnText && indicator) {
+      if (chessGameStatus === 'checkmate') {
+        const winner = chessTurn === 'w' ? (chessMode === 'cpu' ? 'Sakshi' : 'Black') : (chessMode === 'cpu' ? 'You' : 'White');
+        turnText.textContent = `Checkmate! ${winner} Wins.`;
+        indicator.className = 'h-2 w-2 rounded-full bg-rose-600 animate-none';
+      } else if (chessGameStatus === 'stalemate') {
+        turnText.textContent = `Draw by Stalemate.`;
+        indicator.className = 'h-2 w-2 rounded-full bg-neutral-400 animate-none';
+      } else {
+        let side = '';
+        if (chessMode === 'cpu') {
+          side = chessTurn === 'w' ? "Your Turn (White)" : "Sakshi's Turn (Black)";
+        } else {
+          side = chessTurn === 'w' ? "White's Turn" : "Black's Turn";
+        }
+        turnText.textContent = side;
+        indicator.className = `h-2 w-2 rounded-full ${chessTurn === 'w' ? 'bg-emerald-500' : 'bg-neutral-600'} animate-pulse`;
+      }
+    }
+  }
+
+  // Handle Square Selection and Moves
+  function handleChessClick(r: number, c: number) {
+    if (chessGameStatus !== 'playing') return;
+    if (chessMode === 'cpu' && chessTurn === 'b') return; // Blocks playing during CPU turn
+
+    const piece = chessBoard[r][c];
+
+    // Try executing move
+    const isValidMove = chessValidMoves.some(([vr, vc]) => vr === r && vc === c);
+    if (chessSelectedPiece && isValidMove) {
+      const [sr, sc] = chessSelectedPiece;
+      const movingPiece = chessBoard[sr][sc];
+      const captured = chessBoard[r][c];
+      
+      // Execute
+      chessBoard[r][c] = movingPiece;
+      chessBoard[sr][sc] = '';
+      
+      // Pawn promotion (simple promote to Queen)
+      if (movingPiece === 'wp' && r === 0) chessBoard[r][c] = 'wq';
+      if (movingPiece === 'bp' && r === 7) chessBoard[r][c] = 'bq';
+
+      logChess(`${movingPiece.toUpperCase()} moved from ${String.fromCharCode(97+sc)}${8-sr} to ${String.fromCharCode(97+c)}${8-r} ${captured ? '(Captured ' + captured.toUpperCase() + ')' : ''}`);
+
+      // Clear selection
+      chessSelectedPiece = null;
+      chessValidMoves = [];
+      
+      // Toggle Turn
+      chessTurn = chessTurn === 'w' ? 'b' : 'w';
+
+      // Check Status
+      const activeStatus = getGameStatus(chessTurn, chessBoard);
+      if (activeStatus === 'checkmate') {
+        chessGameStatus = 'checkmate';
+        logChess(`CHECKMATE. Game over.`);
+      } else if (activeStatus === 'stalemate') {
+        chessGameStatus = 'stalemate';
+        logChess(`STALEMATE. Draw.`);
+      } else {
+        if (isKingInCheck(chessTurn, chessBoard)) {
+          logChess(`CHECK! ${chessTurn.toUpperCase()} King is under attack.`);
+        }
+        
+        // Trigger CPU play if enabled
+        if (chessMode === 'cpu' && chessTurn === 'b') {
+          setTimeout(triggerCPUMove, 500);
+        }
+      }
+
+      renderChess();
+    } else {
+      // Piece select
+      if (piece && piece[0] === chessTurn) {
+        chessSelectedPiece = [r, c];
+        chessValidMoves = getLegalMoves(r, c, chessBoard);
+      } else {
+        chessSelectedPiece = null;
+        chessValidMoves = [];
+      }
+      renderChess();
+    }
+  }
+
+  function getGameStatus(color: PieceColor, board: BoardState): 'playing' | 'checkmate' | 'stalemate' {
+    const list = getAllLegalMoves(color, board);
+    if (list.length === 0) {
+      if (isKingInCheck(color, board)) {
+        return 'checkmate';
+      }
+      return 'stalemate';
+    }
+    return 'playing';
+  }
+
+  // Basic Heuristic Chess AI
+  function triggerCPUMove() {
+    if (chessGameStatus !== 'playing') return;
+
+    const allMoves = getAllLegalMoves('b', chessBoard);
+    if (allMoves.length === 0) return;
+
+    let bestMove: { from: Coord; to: Coord; score: number } | null = null;
+
+    // Piece values for heuristic scores
+    const pieceValues: Record<string, number> = {
+      'p': 10, 'n': 30, 'b': 30, 'r': 50, 'q': 90, 'k': 900
+    };
+
+    for (const moveGroup of allMoves) {
+      const [fr, fc] = moveGroup.from;
+      const piece = chessBoard[fr][fc];
+      const pVal = pieceValues[piece[1]] || 10;
+
+      for (const dest of moveGroup.to) {
+        const [tr, tc] = dest;
+        const target = chessBoard[tr][tc];
+        let score = 0;
+
+        // 1. Capture score
+        if (target) {
+          score += (pieceValues[target[1]] || 10) * 10;
+        }
+
+        // 2. Positional value (simple center bias)
+        const centerDist = Math.abs(3.5 - tr) + Math.abs(3.5 - tc);
+        score += (8 - centerDist) * 1.5;
+
+        // 3. Prevent landing on attacked squares
+        if (isSquareAttacked(tr, tc, 'w', chessBoard)) {
+          score -= pVal * 5;
+        }
+
+        // 4. Checking opponent is good
+        const temp = chessBoardCopy(chessBoard);
+        temp[tr][tc] = temp[fr][fc];
+        temp[fr][fc] = '';
+        if (isKingInCheck('w', temp)) {
+          score += 15;
+        }
+
+        // 5. Add small random factor
+        score += Math.random() * 5;
+
+        if (!bestMove || score > bestMove.score) {
+          bestMove = { from: [fr, fc], to: [tr, tc], score };
+        }
+      }
+    }
+
+    if (bestMove) {
+      const [fr, fc] = bestMove.from;
+      const [tr, tc] = bestMove.to;
+      const piece = chessBoard[fr][fc];
+      const captured = chessBoard[tr][tc];
+
+      chessBoard[tr][tc] = piece;
+      chessBoard[fr][fc] = '';
+
+      // Auto promote to Queen
+      if (piece === 'bp' && tr === 7) chessBoard[tr][tc] = 'bq';
+
+      logChess(`CPU: ${piece.toUpperCase()} moved from ${String.fromCharCode(97+fc)}${8-fr} to ${String.fromCharCode(97+tc)}${8-tr} ${captured ? '(Captured ' + captured.toUpperCase() + ')' : ''}`);
+
+      chessTurn = 'w';
+
+      const activeStatus = getGameStatus('w', chessBoard);
+      if (activeStatus === 'checkmate') {
+        chessGameStatus = 'checkmate';
+        logChess(`CHECKMATE. Computer wins.`);
+      } else if (activeStatus === 'stalemate') {
+        chessGameStatus = 'stalemate';
+        logChess(`STALEMATE. Draw.`);
+      } else {
+        if (isKingInCheck('w', chessBoard)) {
+          logChess(`CHECK! Your king is under attack.`);
+        }
+      }
+
+      renderChess();
+    }
+  }
+
+  // Setup Chess Controls listeners
+  const btnChessVsCpu = document.getElementById('chess-btn-vs-cpu');
+  const btnChessVsLocal = document.getElementById('chess-btn-vs-local');
+  const btnChessReset = document.getElementById('chess-reset');
+  const themeBtns = document.querySelectorAll('.chess-theme-btn');
+
+  function updateChessModeUI() {
+    const cpuActive = chessMode === 'cpu';
+    const indicator = document.getElementById('chess-mode-indicator');
+    if (indicator) indicator.textContent = cpuActive ? 'VS CPU' : 'LOCAL 2P';
+
+    if (cpuActive) {
+      btnChessVsCpu?.classList.add('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnChessVsCpu?.classList.remove('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+      
+      btnChessVsLocal?.classList.remove('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnChessVsLocal?.classList.add('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+    } else {
+      btnChessVsLocal?.classList.add('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnChessVsLocal?.classList.remove('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+      
+      btnChessVsCpu?.classList.remove('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnChessVsCpu?.classList.add('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+    }
+  }
+
+  btnChessVsCpu?.addEventListener('click', () => {
+    chessMode = 'cpu';
+    updateChessModeUI();
+    resetChess();
+  });
+
+  btnChessVsLocal?.addEventListener('click', () => {
+    chessMode = 'local';
+    updateChessModeUI();
+    resetChess();
+  });
+
+  btnChessReset?.addEventListener('click', resetChess);
+
+  function resetChess() {
+    chessBoard = chessBoardCopy(initialChessBoard);
+    chessTurn = 'w';
+    chessSelectedPiece = null;
+    chessValidMoves = [];
+    chessGameStatus = 'playing';
+    const log = document.getElementById('chess-log');
+    if (log) log.innerHTML = '<div>Game reset. Play your move!</div>';
+    renderChess();
+  }
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const theme = (e.currentTarget as HTMLElement).dataset.chessTheme || 'slate';
+      chessTheme = theme;
+      
+      themeBtns.forEach(b => {
+        b.classList.remove('border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+        b.classList.add('border-neutral-200', 'dark:border-neutral-850', 'text-neutral-500', 'dark:text-neutral-400');
+      });
+      (e.currentTarget as HTMLElement).classList.add('border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+      (e.currentTarget as HTMLElement).classList.remove('border-neutral-200', 'dark:border-neutral-850', 'text-neutral-500', 'dark:text-neutral-400');
+      
+      renderChess();
+    });
+  });
+
+  // Render initial board on load
+  renderChess();
+
+  // ----------------------------------------------------
+  // SNAKES & LADDERS GAME STATE & CONTROLLERS
+  // ----------------------------------------------------
+  let snakesPositions = { p1: 1, p2: 1 }; // p1 = User, p2 = CPU/Opponent
+  let snakesTurn = 1;
+  let snakesIsRolling = false;
+  let snakesMode: 'cpu' | 'local' = 'cpu';
+  let snakesTheme = 'slate';
+  let snakesStatus: 'playing' | 'won' = 'playing';
+
+  const snakesMappping: Record<number, number> = {
+    17: 4, 19: 7, 21: 9, 34: 12, 47: 24, 64: 36, 86: 54, 91: 70, 98: 50
+  };
+  const laddersMapping: Record<number, number> = {
+    3: 22, 5: 8, 11: 26, 20: 29, 38: 58, 46: 87, 53: 72, 57: 85, 75: 96
+  };
+
+  const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+
+  function logSnakes(msg: string) {
+    const log = document.getElementById('snakes-log');
+    if (log) {
+      const entry = document.createElement('div');
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+
+  // Convert cell number 1..100 to percentage coordinates
+  function getCellCoordinates(num: number): { x: number; y: number } {
+    const row = Math.floor((num - 1) / 10);
+    let col = (num - 1) % 10;
+    // serpentine check
+    if (row % 2 === 1) {
+      col = 9 - col;
+    }
+    return {
+      x: (col + 0.5) * 10,
+      y: (9 - row + 0.5) * 10
+    };
+  }
+
+  // Draw Snakes and Ladders Grid Cells
+  function renderSnakesBoard() {
+    const boardEl = document.getElementById('snakes-board');
+    if (!boardEl) return;
+    boardEl.innerHTML = '';
+
+    // Render cells from top-left (100) down to bottom-left (1)
+    for (let r = 9; r >= 0; r--) {
+      for (let c = 0; c < 10; c++) {
+        // Compute cell number
+        let col = c;
+        if (r % 2 === 1) {
+          col = 9 - c; // serpentine reversal
+        }
+        const cellNum = r * 10 + col + 1;
+
+        const cell = document.createElement('div');
+        cell.className = 'w-full h-full flex items-center justify-center text-[8px] sm:text-[10px] font-mono relative border transition-colors';
+        cell.textContent = cellNum.toString();
+
+        const isAltCell = (r + c) % 2 === 1;
+
+        if (snakesTheme === 'cyber') {
+          cell.classList.add(isAltCell ? 'bg-[#06152d]/90' : 'bg-black/60');
+          cell.classList.add('border-emerald-500/10', 'text-cyan-400');
+        } else if (snakesTheme === 'retro') {
+          cell.classList.add(isAltCell ? 'bg-amber-100' : 'bg-sky-100');
+          cell.classList.add('border-amber-300/40', 'text-neutral-700');
+        } else if (snakesTheme === 'candy') {
+          cell.classList.add(isAltCell ? 'bg-pink-100/70' : 'bg-purple-100/50');
+          cell.classList.add('border-pink-200/40', 'text-purple-600');
+        } else {
+          // Default Slate
+          cell.classList.add(isAltCell ? 'bg-neutral-100/80' : 'bg-neutral-50/50');
+          cell.classList.add('dark:' + (isAltCell ? 'bg-neutral-900/40' : 'bg-neutral-950/20'));
+          cell.classList.add('border-neutral-200/80', 'dark:border-neutral-900/50', 'text-neutral-400');
+        }
+
+        // Highlight snake heads or ladder start indices
+        if (snakesMappping[cellNum]) {
+          const badge = document.createElement('span');
+          badge.className = 'absolute bottom-0.5 right-0.5 text-[6px] px-1 rounded bg-rose-500/15 text-rose-500 border border-rose-500/20';
+          badge.textContent = 'S';
+          cell.appendChild(badge);
+        } else if (laddersMapping[cellNum]) {
+          const badge = document.createElement('span');
+          badge.className = 'absolute bottom-0.5 right-0.5 text-[6px] px-1 rounded bg-amber-500/15 text-amber-500 border border-amber-500/20';
+          badge.textContent = 'L';
+          cell.appendChild(badge);
+        }
+
+        boardEl.appendChild(cell);
+      }
+    }
+
+    // Refresh Tokens
+    updateTokenPositions();
+  }
+
+  function updateTokenPositions() {
+    const t1 = document.getElementById('snakes-token-p1');
+    const t2 = document.getElementById('snakes-token-p2');
+
+    if (t1) {
+      const coord = getCellCoordinates(snakesPositions.p1);
+      // Offset tokens slightly if they sit in the same cell
+      const same = snakesPositions.p1 === snakesPositions.p2;
+      t1.style.left = `calc(${coord.x}% - ${same ? '12px' : '8px'})`;
+      t1.style.top = `calc(${coord.y}% - 8px)`;
+    }
+
+    if (t2) {
+      const coord = getCellCoordinates(snakesPositions.p2);
+      const same = snakesPositions.p1 === snakesPositions.p2;
+      t2.style.left = `calc(${coord.x}% - ${same ? '2px' : '8px'})`;
+      t2.style.top = `calc(${coord.y}% - 8px)`;
+    }
+  }
+
+  // Draw Overlay Vector Curves for Snakes and Ladders
+  function initSnakesOverlay() {
+    const groupEl = document.getElementById('snakes-paths-group');
+    if (!groupEl) return;
+    groupEl.innerHTML = '';
+
+    // Choose line styling based on theme
+    const themeCyber = snakesTheme === 'cyber';
+
+    const snakeStroke = themeCyber ? 'url(#snake-cyber)' : 'url(#snake-grad)';
+    const ladderStroke = themeCyber ? 'url(#ladder-cyber)' : 'url(#ladder-grad)';
+
+    // Render Ladders
+    Object.entries(laddersMapping).forEach(([startStr, end]) => {
+      const start = parseInt(startStr);
+      const startCoord = getCellCoordinates(start);
+      const endCoord = getCellCoordinates(end);
+
+      const dx = endCoord.x - startCoord.x;
+      const dy = endCoord.y - startCoord.y;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      const ux = dx / len;
+      const uy = dy / len;
+      // Perpendicular vector for offset
+      const px = -uy * 1.5;
+      const py = ux * 1.5;
+
+      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      group.setAttribute('class', 'transition-all duration-300 opacity-80');
+
+      // Left Rail
+      const rail1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      rail1.setAttribute('x1', (startCoord.x + px).toString());
+      rail1.setAttribute('y1', (startCoord.y + py).toString());
+      rail1.setAttribute('x2', (endCoord.x + px).toString());
+      rail1.setAttribute('y2', (endCoord.y + py).toString());
+      rail1.setAttribute('stroke', ladderStroke);
+      rail1.setAttribute('stroke-width', '1');
+      group.appendChild(rail1);
+
+      // Right Rail
+      const rail2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      rail2.setAttribute('x1', (startCoord.x - px).toString());
+      rail2.setAttribute('y1', (startCoord.y - py).toString());
+      rail2.setAttribute('x2', (endCoord.x - px).toString());
+      rail2.setAttribute('y2', (endCoord.y - py).toString());
+      rail2.setAttribute('stroke', ladderStroke);
+      rail2.setAttribute('stroke-width', '1');
+      group.appendChild(rail2);
+
+      // Rungs (5 horizontal steps)
+      for (let i = 1; i <= 5; i++) {
+        const t = i / 6;
+        const rx = startCoord.x + dx * t;
+        const ry = startCoord.y + dy * t;
+        const rung = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        rung.setAttribute('x1', (rx + px).toString());
+        rung.setAttribute('y1', (ry + py).toString());
+        rung.setAttribute('x2', (rx - px).toString());
+        rung.setAttribute('y2', (ry - py).toString());
+        rung.setAttribute('stroke', ladderStroke);
+        rung.setAttribute('stroke-width', '0.8');
+        group.appendChild(rung);
+      }
+
+      groupEl.appendChild(group);
+    });
+
+    // Render Snakes
+    Object.entries(snakesMappping).forEach(([startStr, end]) => {
+      const start = parseInt(startStr);
+      const startCoord = getCellCoordinates(start); // Head
+      const endCoord = getCellCoordinates(end); // Tail
+
+      const dx = endCoord.x - startCoord.x;
+      const dy = endCoord.y - startCoord.y;
+      
+      // Control points for a curved wiggle body
+      const cx1 = startCoord.x + dx * 0.25 + dy * 0.15;
+      const cy1 = startCoord.y + dy * 0.25 - dx * 0.15;
+      const cx2 = startCoord.x + dx * 0.75 - dy * 0.15;
+      const cy2 = startCoord.y + dy * 0.75 + dx * 0.15;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M ${startCoord.x} ${startCoord.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${endCoord.x} ${endCoord.y}`);
+      path.setAttribute('stroke', snakeStroke);
+      path.setAttribute('stroke-width', '2.5');
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('class', 'transition-all duration-300 opacity-80');
+
+      // Head indicator
+      const head = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      head.setAttribute('cx', startCoord.x.toString());
+      head.setAttribute('cy', startCoord.y.toString());
+      head.setAttribute('r', '1.6');
+      head.setAttribute('fill', themeCyber ? '#ec4899' : '#ef4444');
+
+      groupEl.appendChild(path);
+      groupEl.appendChild(head);
+    });
+  }
+
+  // Roll action logic
+  const diceVisual = document.getElementById('dice-visual');
+  const rollBtn = document.getElementById('snakes-roll-btn');
+  const diceResultText = document.getElementById('dice-result-val');
+
+  async function rollDice() {
+    if (snakesIsRolling || snakesStatus === 'won') return;
+
+    snakesIsRolling = true;
+    diceVisual?.classList.add('dice-rolling');
+    
+    // Simulate dice rolling shuffle
+    let counter = 0;
+    const interval = setInterval(() => {
+      const idx = Math.floor(Math.random() * 6);
+      if (diceVisual) diceVisual.textContent = diceFaces[idx];
+      counter++;
+      if (counter > 6) {
+        clearInterval(interval);
+      }
+    }, 80);
+
+    await new Promise(resolve => setTimeout(resolve, 600));
+
+    // True rolled value
+    const val = Math.floor(Math.random() * 6) + 1;
+    if (diceVisual) diceVisual.textContent = diceFaces[val - 1];
+    if (diceResultText) diceResultText.textContent = val.toString();
+    diceVisual?.classList.remove('dice-rolling');
+
+    const activePlayer = snakesTurn;
+    const currentPos = activePlayer === 1 ? snakesPositions.p1 : snakesPositions.p2;
+    const pName = activePlayer === 1 ? (snakesMode === 'cpu' ? 'You' : 'Player 1') : (snakesMode === 'cpu' ? 'Sakshi' : 'Player 2');
+
+    logSnakes(`${pName} rolled a ${val}`);
+
+    if (currentPos + val > 100) {
+      logSnakes(`${pName} needs exactly ${100 - currentPos} to win! Stay put.`);
+      snakesIsRolling = false;
+      toggleSnakesTurn();
+      return;
+    }
+
+    // Step-by-step moving animation
+    for (let step = 1; step <= val; step++) {
+      const nextPos = currentPos + step;
+      if (activePlayer === 1) {
+        snakesPositions.p1 = nextPos;
+      } else {
+        snakesPositions.p2 = nextPos;
+      }
+      updateTokenPositions();
+      await new Promise(resolve => setTimeout(resolve, 200));
+    }
+
+    const finalPos = activePlayer === 1 ? snakesPositions.p1 : snakesPositions.p2;
+
+    // Check Win
+    if (finalPos === 100) {
+      snakesStatus = 'won';
+      logSnakes(`${pName.toUpperCase()} WINS THE GAME!`);
+      const statusText = document.getElementById('snakes-status-text');
+      if (statusText) statusText.textContent = `${pName} Won!`;
+      snakesIsRolling = false;
+      return;
+    }
+
+    // Check ladders
+    if (laddersMapping[finalPos]) {
+      const top = laddersMapping[finalPos];
+      logSnakes(`LADDER! ${pName} climbed from ${finalPos} to ${top}`);
+      await new Promise(resolve => setTimeout(resolve, 400));
+      if (activePlayer === 1) {
+        snakesPositions.p1 = top;
+      } else {
+        snakesPositions.p2 = top;
+      }
+      updateTokenPositions();
+    }
+
+    // Check snakes
+    if (snakesMappping[finalPos]) {
+      const tail = snakesMappping[finalPos];
+      logSnakes(`SNAKE! ${pName} slid down from ${finalPos} to ${tail}`);
+      await new Promise(resolve => setTimeout(resolve, 400));
+      if (activePlayer === 1) {
+        snakesPositions.p1 = tail;
+      } else {
+        snakesPositions.p2 = tail;
+      }
+      updateTokenPositions();
+    }
+
+    snakesIsRolling = false;
+    toggleSnakesTurn();
+  }
+
+  function toggleSnakesTurn() {
+    if (snakesStatus === 'won') return;
+
+    snakesTurn = snakesTurn === 1 ? 2 : 1;
+
+    const statusText = document.getElementById('snakes-status-text');
+    const indicator = document.getElementById('snakes-turn-indicator');
+
+    if (statusText && indicator) {
+      if (snakesTurn === 1) {
+        statusText.textContent = snakesMode === 'cpu' ? "Your Turn (Blue)" : "Player 1's Turn (Blue)";
+        indicator.className = 'h-2 w-2 rounded-full bg-blue-500';
+      } else {
+        statusText.textContent = snakesMode === 'cpu' ? "Sakshi's Turn (Purple)" : "Player 2's Turn (Purple)";
+        indicator.className = 'h-2 w-2 rounded-full bg-purple-500';
+
+        // Trigger CPU play
+        if (snakesMode === 'cpu') {
+          setTimeout(rollDice, 1000);
+        }
+      }
+    }
+  }
+
+  // Setup click triggers
+  diceVisual?.addEventListener('click', rollDice);
+  rollBtn?.addEventListener('click', rollDice);
+
+  // Settings
+  const btnSnakesVsCpu = document.getElementById('snakes-btn-vs-cpu');
+  const btnSnakesVsLocal = document.getElementById('snakes-btn-vs-local');
+  const btnSnakesReset = document.getElementById('snakes-reset');
+  const snakesThemeBtns = document.querySelectorAll('.snakes-theme-btn');
+
+  function updateSnakesModeUI() {
+    const cpuActive = snakesMode === 'cpu';
+    const indicator = document.getElementById('snakes-mode-indicator');
+    if (indicator) indicator.textContent = cpuActive ? 'VS CPU' : 'LOCAL 2P';
+
+    if (cpuActive) {
+      btnSnakesVsCpu?.classList.add('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnSnakesVsCpu?.classList.remove('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+      
+      btnSnakesVsLocal?.classList.remove('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnSnakesVsLocal?.classList.add('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+    } else {
+      btnSnakesVsLocal?.classList.add('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnSnakesVsLocal?.classList.remove('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+      
+      btnSnakesVsCpu?.classList.remove('bg-neutral-950', 'text-white', 'dark:bg-white', 'dark:text-black');
+      btnSnakesVsCpu?.classList.add('border-neutral-200', 'dark:border-neutral-800', 'bg-white', 'dark:bg-black', 'text-neutral-600', 'dark:text-neutral-300');
+    }
+  }
+
+  btnSnakesVsCpu?.addEventListener('click', () => {
+    snakesMode = 'cpu';
+    updateSnakesModeUI();
+    resetSnakes();
+  });
+
+  btnSnakesVsLocal?.addEventListener('click', () => {
+    snakesMode = 'local';
+    updateSnakesModeUI();
+    resetSnakes();
+  });
+
+  btnSnakesReset?.addEventListener('click', resetSnakes);
+
+  function resetSnakes() {
+    snakesPositions = { p1: 1, p2: 1 };
+    snakesTurn = 1;
+    snakesIsRolling = false;
+    snakesStatus = 'playing';
+    const log = document.getElementById('snakes-log');
+    if (log) log.innerHTML = '<div>Game reset. Roll dice!</div>';
+    if (diceResultText) diceResultText.textContent = '-';
+    if (diceVisual) diceVisual.textContent = '⚀';
+    
+    const statusText = document.getElementById('snakes-status-text');
+    const indicator = document.getElementById('snakes-turn-indicator');
+    if (statusText && indicator) {
+      statusText.textContent = snakesMode === 'cpu' ? "Your Turn (Blue)" : "Player 1's Turn (Blue)";
+      indicator.className = 'h-2 w-2 rounded-full bg-blue-500';
+    }
+
+    renderSnakesBoard();
+    initSnakesOverlay();
+  }
+
+  snakesThemeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const theme = (e.currentTarget as HTMLElement).dataset.snakesTheme || 'slate';
+      snakesTheme = theme;
+      
+      snakesThemeBtns.forEach(b => {
+        b.classList.remove('border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+        b.classList.add('border-neutral-200', 'dark:border-neutral-850', 'text-neutral-500', 'dark:text-neutral-400');
+      });
+      (e.currentTarget as HTMLElement).classList.add('border-neutral-900', 'dark:border-white', 'text-neutral-900', 'dark:text-white');
+      (e.currentTarget as HTMLElement).classList.remove('border-neutral-200', 'dark:border-neutral-850', 'text-neutral-500', 'dark:text-neutral-400');
+      
+      renderSnakesBoard();
+      initSnakesOverlay();
+    });
+  });
+
+  // Initial Snakes layout load
+  renderSnakesBoard();
+</script>
