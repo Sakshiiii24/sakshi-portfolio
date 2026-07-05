@@ -214,6 +214,24 @@ export const portfolioData: PortfolioData = {
   ],
   certifications: [
     {
+      name: "Java Spring Boot Microservices eCommerce Project Masterclass",
+      issuer: "Udemy",
+      date: "June 2026",
+      link: "https://ude.my/UC-830f3698-6a0d-4c25-95a8-77d402ccc271"
+    },
+    {
+      name: "Java Multithreading, Concurrency & Performance Optimization",
+      issuer: "Udemy",
+      date: "June 2026",
+      link: "https://ude.my/UC-f9a0afde-b84d-44aa-8ee4-e1dc5ccaa910"
+    },
+    {
+      name: "Ethics & Generative AI (GenAI)",
+      issuer: "Udemy",
+      date: "June 2026",
+      link: "https://ude.my/UC-6c56a281-1ffb-482f-9d6f-6d9d30e4273b"
+    },
+    {
       name: "Java Development Certification",
       issuer: "Udemy",
       date: "2025"
