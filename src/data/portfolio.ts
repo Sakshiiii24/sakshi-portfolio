@@ -202,6 +202,27 @@ export const portfolioData: PortfolioData = {
       tech: ["Java", "React.js", "HTML5", "CSS3", "JavaScript", "MySQL"],
       github: "https://github.com/Sakshiiii24/Healthcare-Management-System",
       featured: true
+    },
+    {
+      title: "Secure Crypt Password Generator",
+      description: "A secure cryptographic utility designed to generate highly secure, customizable passwords and encrypt them using AES-256 and SHA-256 algorithms. Features a dynamic entropy strength calculator, copy-to-clipboard functionality, and secure client-side hashing.",
+      tech: ["JavaScript", "HTML5", "CSS3", "Web Crypto API"],
+      github: "https://github.com/Sakshiiii24/Secure-Password-Generator-Encryptor",
+      featured: true
+    },
+    {
+      title: "Interactive Sorting Visualizer",
+      description: "An educational web tool visualizing standard sorting algorithms (Bubble, Selection, Insertion, Quick, and Merge Sort) in real-time. Features adjustable execution speed, array size customization, and color-coded comparisons to illustrate algorithmic complexity.",
+      tech: ["React.js", "HTML5", "CSS3", "JavaScript"],
+      github: "https://github.com/Sakshiiii24/Visual-Sorting-Visualizer",
+      featured: true
+    },
+    {
+      title: "Java Spring Boot CRUD Portal",
+      description: "A full-stack enterprise dashboard built with a Spring Boot REST API and React frontend. Implements secure JWT authentication, relational MySQL schema mapping with Hibernate JPA, paginated data tables, and complete CRUD operations for resource scheduling.",
+      tech: ["Java", "Spring Boot", "React.js", "MySQL", "REST APIs"],
+      github: "https://github.com/Sakshiiii24/Spring-Boot-CRUD-Portal",
+      featured: true
     }
   ],
   education: [
